@@ -1,0 +1,100 @@
+﻿@using OSBIDE.Library.Models
+@model OSBIDE.Web.Models.ViewModels.CreateAccountViewModel
+@{
+    ViewBag.Title = "Create Account";
+    bool userExistsError = (ViewBag.UserExistsError != null) ? ViewBag.UserExistsError : false;
+    bool schoolIdExistsError = (ViewBag.SchoolIdExistsError != null) ? ViewBag.SchoolIdExistsError : false;
+    ViewBag.IncludeHeader = false;
+}
+
+<h1>Create OSBIDE Account</h1>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Account creation was unsuccessful. Please correct the errors and try again.")
+    if (userExistsError || schoolIdExistsError)
+    {
+        @Html.ActionLink("Did you forgot your account information?", "ForgotEmail")
+    }
+    <p>Creating an OSIBDE account will allow you to access OSBIDE content within Visual Studio.  To begin, please fill out the following information:</p>
+    @Html.HiddenFor(m => m.User.Email);
+    <table class="form-entry">
+        <tr>
+            <th>@Html.LabelFor(m => m.User.FirstName):</th>
+            <td>@Html.TextBoxFor(m => m.User.FirstName)</td>
+            <td>@Html.ValidationMessageFor(m => m.User.FirstName)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.User.LastName):</th>
+            <td>@Html.TextBoxFor(m => m.User.LastName)</td>
+            <td>@Html.ValidationMessageFor(m => m.User.LastName)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.Email):<br />
+                <span class="small-text">(this will be your user name)</span></th>
+            <td>@Html.TextBoxFor(m => m.Email)</td>
+            <td>@Html.ValidationMessageFor(m => m.Email)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.EmailVerification):</th>
+            <td>@Html.TextBoxFor(m => m.EmailVerification)</td>
+            <td>@Html.ValidationMessageFor(m => m.EmailVerification)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.Password):</th>
+            <td>@Html.PasswordFor(m => m.Password)</td>
+            <td>@Html.ValidationMessageFor(m => m.Password)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.PasswordVerification):</th>
+            <td>@Html.PasswordFor(m => m.PasswordVerification)</td>
+            <td>@Html.ValidationMessageFor(m => m.PasswordVerification)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.User.SchoolId):</th>
+            <td>@Html.DropDownListFor(m => m.User.SchoolId, new SelectList(ViewBag.Schools, "Id", "Name"), String.Empty)</td>
+            <td>@Html.ValidationMessageFor(m => m.User.SchoolId)</td>
+        </tr>
+        <tr>
+            <th style="vertical-align:top">
+                @Html.LabelFor(m => m.User.InstitutionId):
+            <img id="gender-tooltip" src="~/Content/icons/help.png" alt="more information about ID number" title="For WSU students, this is your 8-digit student ID number" />
+        </th>
+            <td>@Html.TextBoxFor(m => m.User.InstitutionId)</td>
+            <td>@Html.ValidationMessageFor(m => m.User.InstitutionId)</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <th style="vertical-align:top">@Html.LabelFor(m => m.User.GenderValue): (optional)
+                <img id="gender-tooltip" src="~/Content/icons/help.png" alt="more information about gender" title="gender is optional" />
+            </th>
+            <td>
+                @Html.RadioButtonFor(m => m.User.Gender, Gender.Unknown, new { @checked = "checked", id = "gender-other" }) 
+                <label for="gender-other">Other / Unknown / Not specified</label>
+                <br />
+                @Html.RadioButtonFor(m => m.User.Gender, Gender.Male, new { id = "gender-male" }) 
+                <label for="gender-male">Male</label>
+                <br />
+                @Html.RadioButtonFor(m => m.User.Gender, Gender.Female, new { id = "gender-female" }) 
+                <label for="gender-female">Female</label>
+            </td>
+            <td>
+                
+            </td>
+        </tr>
+    </table>
+    <input id="create-account-button" type="submit" value="Create Account" />
+    <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/Osbide.Account.Create.js")
+<style type="text/css">
+    div.ui-tooltip {
+    max-width: 400px;
+    text-align:justify;
+    padding:6px;
+}
+</style>
+}

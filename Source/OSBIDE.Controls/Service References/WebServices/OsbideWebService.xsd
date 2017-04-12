@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/OSBIDE.Library.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OSBIDE.Library.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OsbideUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="GenderValue" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="InstitutionId" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastVsActivity" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProfileImage" nillable="true" type="tns:ProfileImage" />
+      <xs:element minOccurs="0" name="RoleValue" type="xs:int" />
+      <xs:element minOccurs="0" name="SchoolId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OsbideUser" nillable="true" type="tns:OsbideUser" />
+  <xs:complexType name="ProfileImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:OsbideUser" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileImage" nillable="true" type="tns:ProfileImage" />
+  <xs:complexType name="ArrayOfCourse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Course" nillable="true" type="tns:Course" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCourse" nillable="true" type="tns:ArrayOfCourse" />
+  <xs:complexType name="Course">
+    <xs:sequence>
+      <xs:element name="_x003C_Assignments_x003E_k__BackingField" nillable="true" type="tns:ArrayOfAssignment" />
+      <xs:element name="_x003C_CourseNumber_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CourseUserRelationships_x003E_k__BackingField" nillable="true" type="tns:ArrayOfCourseUserRelationship" />
+      <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_IsDeleted_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Prefix_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_RequiresApprovalBeforeAdmission_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_SchoolId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_School_x003E_k__BackingField" nillable="true" type="tns:School" />
+      <xs:element name="_x003C_Season_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Year_x003E_k__BackingField" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Course" nillable="true" type="tns:Course" />
+  <xs:complexType name="ArrayOfAssignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Assignment" nillable="true" type="tns:Assignment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAssignment" nillable="true" type="tns:ArrayOfAssignment" />
+  <xs:complexType name="Assignment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Course" nillable="true" type="tns:Course" />
+      <xs:element minOccurs="0" name="CourseId" type="xs:int" />
+      <xs:element minOccurs="0" name="DueDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DueTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDeleted" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReleaseDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ReleaseTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="UtcOffsetMinutes" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Assignment" nillable="true" type="tns:Assignment" />
+  <xs:complexType name="ArrayOfCourseUserRelationship">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CourseUserRelationship" nillable="true" type="tns:CourseUserRelationship" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCourseUserRelationship" nillable="true" type="tns:ArrayOfCourseUserRelationship" />
+  <xs:complexType name="CourseUserRelationship">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Course" nillable="true" type="tns:Course" />
+      <xs:element minOccurs="0" name="CourseId" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsApproved" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Role" type="tns:CourseRole" />
+      <xs:element minOccurs="0" name="RoleType" type="xs:int" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:OsbideUser" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CourseUserRelationship" nillable="true" type="tns:CourseUserRelationship" />
+  <xs:simpleType name="CourseRole">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Student" />
+      <xs:enumeration value="Assistant" />
+      <xs:enumeration value="Coordinator" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CourseRole" nillable="true" type="tns:CourseRole" />
+  <xs:complexType name="School">
+    <xs:sequence>
+      <xs:element name="_x003C_Id_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="School" nillable="true" type="tns:School" />
+  <xs:complexType name="EventLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssemblyVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:EventLogData" />
+      <xs:element minOccurs="0" name="DateReceived" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LogType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventLog" nillable="true" type="tns:EventLog" />
+  <xs:complexType name="EventLogData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BinaryData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="LogId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventLogData" nillable="true" type="tns:EventLogData" />
+  <xs:complexType name="LocalErrorLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LogDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Sender" nillable="true" type="tns:OsbideUser" />
+      <xs:element minOccurs="0" name="SenderId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocalErrorLog" nillable="true" type="tns:LocalErrorLog" />
+</xs:schema>

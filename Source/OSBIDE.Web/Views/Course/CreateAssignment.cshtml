@@ -1,0 +1,49 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@model Assignment
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<section id="create-assignment" title="Create New Assignment">
+    @using (Html.BeginForm("CreateAssignment", "Course", FormMethod.Post, new { id = "create-assignment-form" }))
+    {
+        <table>
+            <tr>
+                <th>@Html.LabelFor(m => m.Name)</th>
+                <td>@Html.EditorFor(m => m.Name)</td>
+                <td>@Html.ValidationMessageFor(m => m.Name)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th colspan="4">Date Assigned</th>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(m => m.ReleaseDate)</th>
+                <td>@Html.EditorFor(m => m.ReleaseDate)</td>
+                <th>@Html.LabelFor(m => m.ReleaseTime)</th>
+                <td>@Html.EditorFor(m => m.ReleaseTime)</td>
+            </tr>
+            <tr>
+                <th colspan="4">Due Date</th>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(m => m.DueDate)</th>
+                <td>@Html.EditorFor(m => m.DueDate)</td>
+                <th>@Html.LabelFor(m => m.DueTime)</th>
+                <td>@Html.EditorFor(m => m.DueTime)</td>
+            </tr>
+            <tr >
+                <th style="padding-top:10px;">Allow Web Submit</th>
+                <td style="padding-top:10px;">@Html.CheckBoxFor(m => m.AllowWebSubmit)</td>
+                <th></th>
+                <td></td>
+            </tr>
+        </table>
+        @Html.HiddenFor(m => m.CourseId)
+        <input type="submit" value="Create Assignment" id="create-assignment-button" />
+        <input type="hidden" class="utc-offset" name="UtcOffsetMinutes" value="0" />
+    }
+</section>

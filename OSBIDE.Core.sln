@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSBIDE.Library", "Source\OSBIDE.Library\OSBIDE.Library.csproj", "{A38761C0-8F42-4C04-9DAA-05989B3971D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSBIDE.Controls", "Source\OSBIDE.Controls\OSBIDE.Controls.csproj", "{9EA09E78-0541-4233-B189-EE1DBD56520D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSBIDE.Library.ServiceClient", "Source\OSBIDE.Library.ServiceClient\OSBIDE.Library.ServiceClient.csproj", "{5AAF5126-7931-40F4-9B46-92CE15C47CCA}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
+		SccProjectUniqueName0 = Source\\OSBIDE.Library\\OSBIDE.Library.csproj
+		SccProjectName0 = Source/OSBIDE.Library
+		SccAuxPath0 = https://tfs.codeplex.com/tfs/tfs25
+		SccLocalPath0 = Source\\OSBIDE.Library
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = Source\\OSBIDE.Controls\\OSBIDE.Controls.csproj
+		SccProjectName1 = Source/OSBIDE.Controls
+		SccAuxPath1 = https://tfs.codeplex.com/tfs/tfs25
+		SccLocalPath1 = Source\\OSBIDE.Controls
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = Source\\OSBIDE.Library.ServiceClient\\OSBIDE.Library.ServiceClient.csproj
+		SccProjectName2 = Source/OSBIDE.Library.ServiceClient
+		SccAuxPath2 = https://tfs.codeplex.com/tfs/tfs25
+		SccLocalPath2 = Source\\OSBIDE.Library.ServiceClient
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		OSBIDE Deployment|Any CPU = OSBIDE Deployment|Any CPU
+		OSBIDE Deployment|x86 = OSBIDE Deployment|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Debug|x86.ActiveCfg = Debug|x86
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Debug|x86.Build.0 = Debug|x86
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.OSBIDE Deployment|Any CPU.ActiveCfg = OSBIDE Deployment|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.OSBIDE Deployment|Any CPU.Build.0 = OSBIDE Deployment|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.OSBIDE Deployment|x86.ActiveCfg = OSBIDE Deployment|x86
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.OSBIDE Deployment|x86.Build.0 = OSBIDE Deployment|x86
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Release|x86.ActiveCfg = Release|x86
+		{A38761C0-8F42-4C04-9DAA-05989B3971D0}.Release|x86.Build.0 = Release|x86
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.OSBIDE Deployment|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.OSBIDE Deployment|Any CPU.Build.0 = Release|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.OSBIDE Deployment|x86.ActiveCfg = Release|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EA09E78-0541-4233-B189-EE1DBD56520D}.Release|x86.ActiveCfg = Release|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Debug|x86.ActiveCfg = Debug|x86
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Debug|x86.Build.0 = Debug|x86
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.OSBIDE Deployment|Any CPU.ActiveCfg = Release|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.OSBIDE Deployment|Any CPU.Build.0 = Release|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.OSBIDE Deployment|x86.ActiveCfg = Release|x86
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.OSBIDE Deployment|x86.Build.0 = Release|x86
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Release|x86.ActiveCfg = Release|x86
+		{5AAF5126-7931-40F4-9B46-92CE15C47CCA}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

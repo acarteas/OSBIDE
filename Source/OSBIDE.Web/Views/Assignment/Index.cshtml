@@ -1,0 +1,58 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@using OSBIDE.Web.Models.ViewModels
+@model AssignmentsViewModel
+@{
+    ViewBag.Title = "Assignment List";
+}
+<h1>Submissions for @Model.CurrentAssignment.Name</h1>
+@using (Html.BeginForm("Index", "Assignment", FormMethod.Get))
+{
+    <select name="assignmentId">
+        @foreach (Assignment option in Model.Assignments)
+        {
+            string selected = "";
+            if (option.Id == Model.CurrentAssignment.Id)
+            {
+                selected = "selected = \"selected\"";
+            }
+            <option @Html.Raw(selected) value="@option.Id">@option.Name</option>
+        }
+    </select>
+    <input type="submit" value="View Submissions" />
+    <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+}
+<br />
+<table id="subscriptions-table">
+    <thead>
+        <tr>
+            <th>Student</th>
+            <th>Date Received</th>
+            <th>&nbsp;</th>
+        </tr>
+    </thead>
+    @foreach (SubmitEvent submit in Model.Submissions)
+    {
+        <tr>
+            <td>@submit.EventLog.Sender.FullName</td>
+            <td>
+                <time 
+                class="utc-time"
+                datetime="@Helpers.DateAsUnixTime(submit.EventLog.DateReceived)" 
+                data-original-date="@Helpers.RawDate(submit.EventLog.DateReceived)" 
+                data-date-format="MM/DD/YYYY hh:mm A">
+                @submit.EventLog.DateReceived.ToString("MM/dd @ hh:mm tt") (UTC)
+            </time>
+                </td>
+            <td>@Html.ActionLink("Download", "DownloadSingle", new { id = submit.EventLogId }, new { })</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="3">
+            @Html.ActionLink("Download All", "Download", new { id = Model.CurrentAssignment.Id }, new { })
+            <br />
+            @Html.ActionLink("Download With Student Ids", "DownloadWithIds", new { id = Model.CurrentAssignment.Id }, new { })
+        </td>
+    </tr>
+</table>

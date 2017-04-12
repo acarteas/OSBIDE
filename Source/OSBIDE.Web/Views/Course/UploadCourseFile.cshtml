@@ -1,0 +1,21 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@model Course
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<section id="upload-course-files" title="Upload Files to Course">
+    @using (Html.BeginForm("UploadCourseFile", "Course", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-course-files-form" }))
+    {
+        <p>
+            Use the form below to select one or more files from your computer to attach to the current course.
+        </p>
+        <br />
+        <input type="file" multiple="multiple" name="files" />
+        <input type="hidden" name="CourseId" value="@Model.Id" />
+        <input id="upload-course-files-submit" type="submit" value="Upload File(s)" name="upload-files" />
+    }
+</section>

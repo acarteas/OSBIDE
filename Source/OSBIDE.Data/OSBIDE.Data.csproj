@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7EEA481B-1995-402E-956D-6757672F1693}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSBIDE.Data</RootNamespace>
+    <AssemblyName>OSBIDE.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\..\packages\EPPlus.3.1.3.3\lib\net35\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\WindowsAzure.Storage.2.0.5.1\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomainObjects\ActionRequestLog.cs" />
+    <Compile Include="DomainObjects\AgeLookup.cs" />
+    <Compile Include="DomainObjects\DailyAggregations.cs" />
+    <Compile Include="DomainObjects\Hashtag.cs" />
+    <Compile Include="DomainObjects\HourlyAggregations.cs" />
+    <Compile Include="DomainObjects\MeasureDefinitions.cs" />
+    <Compile Include="DomainObjects\Notification.cs" />
+    <Compile Include="DomainObjects\TimelineChartData.cs" />
+    <Compile Include="DomainObjects\Comment.cs" />
+    <Compile Include="DomainObjects\ConstantsAndEnums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DomainObjects\CourseLookup.cs" />
+    <Compile Include="DomainObjects\Criteria.cs" />
+    <Compile Include="DomainObjects\DocUtilDetails.cs" />
+    <Compile Include="DomainObjects\DomainConstants.cs" />
+    <Compile Include="DomainObjects\ErrorFixTimeStats.cs" />
+    <Compile Include="DomainObjects\BuildErrorEvent.cs" />
+    <Compile Include="DomainObjects\ErrorQuotientParams.cs" />
+    <Compile Include="DomainObjects\ScoringResult.cs" />
+    <Compile Include="DomainObjects\VisualizationParams.cs" />
+    <Compile Include="DomainObjects\WatwinScoringParams.cs" />
+    <Compile Include="DomainObjects\FeedItem.cs" />
+    <Compile Include="DomainObjects\DomainObjectHelpers.cs" />
+    <Compile Include="DomainObjects\GenderLookup.cs" />
+    <Compile Include="DomainObjects\ProcedureTypeLookup.cs" />
+    <Compile Include="DomainObjects\StudentDemographicInfo.cs" />
+    <Compile Include="NoSQLStorage\ActionRequestLogEntry.cs" />
+    <Compile Include="NoSQLStorage\ActionRequestLogStorage.cs" />
+    <Compile Include="SQLDatabase\ActiveSocialEventUtilProc.cs" />
+    <Compile Include="SQLDatabase\DataAnalytics\WatwinScoring\WatwinScoring.cs" />
+    <Compile Include="SQLDatabase\DataAnalytics\WatwinScoring\WatwinScoringAnalytics.cs" />
+    <Compile Include="SQLDatabase\Edmx\FeedPostHashtags.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\FeedPostUserTags.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetActiveSocialEventProcessInfo_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetBuildErrorMessages_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetCalendarMeasuresByDay_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetHashtags_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetPassiveSocialEventProcessLog_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetPassiveSocialEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetStateMachineEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetTrendsAndNotifications_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\HashTags.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\ErrorFixTimeStatsProc.cs" />
+    <Compile Include="SQLDatabase\CriteriaLookupsProc.cs" />
+    <Compile Include="SQLDatabase\DataAnalytics\ErrorQuotient\ErrorQuotient.cs" />
+    <Compile Include="SQLDatabase\DataAnalytics\ErrorQuotient\ErrorQuotientAnalytics.cs" />
+    <Compile Include="SQLDatabase\DocUtilProcs.cs" />
+    <Compile Include="SQLDatabase\DynamicSQLExecutor.cs" />
+    <Compile Include="SQLDatabase\Edmx\GetAgeLookup_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetAskForHelpEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetBuildDocUtilBatch_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetBuildEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetComments_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetCourseLookup_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetErrorFixTimeStats_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetErrorQuotientDocumentData_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetErrorQuotientErrorTypeData_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetErrorQuotientSessionData_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetEventLogs_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetExceptionEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetFeedPostEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetHelpfulMarkGivenEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetLogCommentEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetLogComments_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetOsbideUsers_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetProcedureData_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetRecentCompileErrors_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetSubmitEvents_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetSubscriptions_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\GetWatwinScoringErrorTypeData_Result.cs">
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\OsbideProcs.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OsbideProcs.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\OsbideProcs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OsbideProcs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SQLDatabase\Edmx\OsbideProcs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OsbideProcs.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLDatabase\EventLogsProc.cs" />
+    <Compile Include="SQLDatabase\CommentsProc.cs" />
+    <Compile Include="SQLDatabase\ExcelToSQL.cs" />
+    <Compile Include="SQLDatabase\ExcelImport.cs" />
+    <Compile Include="SQLDatabase\BuildEventSessionDataProc.cs" />
+    <Compile Include="SQLDatabase\GetHashtagsProc.cs" />
+    <Compile Include="SQLDatabase\MarkReadProc.cs" />
+    <Compile Include="SQLDatabase\PassiveSocialEventUtilProc.cs" />
+    <Compile Include="SQLDatabase\SQLTemplatePassiveSocialEvents.cs" />
+    <Compile Include="SQLDatabase\SQLTemplateGrades.cs" />
+    <Compile Include="SQLDatabase\ProcedureDataProc.cs" />
+    <Compile Include="SQLDatabase\RecentErrorProc.cs" />
+    <Compile Include="SQLDatabase\SQLTemplateSurveys.cs" />
+    <Compile Include="SQLDatabase\SQLTemplateUpdateActiveSocialEvents.cs" />
+    <Compile Include="SQLDatabase\SQLTemplateUpdateBuildDocuments.cs" />
+    <Compile Include="SQLDatabase\CalendarDataProc.cs" />
+    <Compile Include="SQLDatabase\TimelineChartDataProc.cs" />
+    <Compile Include="SQLDatabase\TimelineStateDictionaries.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="SQLDatabase\Edmx\OsbideProcs.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OsbideProcs.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SQLDatabase\Edmx\OsbideProcs.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OsbideProcs.Context.cs</LastGenOutput>
+      <DependentUpon>OsbideProcs.edmx</DependentUpon>
+    </None>
+    <None Include="SQLDatabase\Edmx\OsbideProcs.edmx.diagram">
+      <DependentUpon>OsbideProcs.edmx</DependentUpon>
+    </None>
+    <None Include="SQLDatabase\Edmx\OsbideProcs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>OsbideProcs.cs</LastGenOutput>
+      <DependentUpon>OsbideProcs.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQLDatabase\Scripts\AddColumnsToBuildDocumentsTable.sql" />
+    <Content Include="SQLDatabase\Scripts\AlterEventLogs.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateActiveSocialEventsTable.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateErrorFixTimeStatsTable.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateEventTypesTableWithLookupValues.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateHashtagTables.sql" />
+    <Content Include="SQLDatabase\Scripts\CreatePassiveSocialEventLogTable.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateImportTables.sql" />
+    <Content Include="SQLDatabase\Scripts\CreateIndexes.sql" />
+    <Content Include="SQLDatabase\Scripts\Dummy.sql" />
+    <Content Include="SQLDatabase\Scripts\EventTimeView.sql" />
+    <Content Include="SQLDatabase\Scripts\EventView.sql" />
+    <Content Include="SQLDatabase\Scripts\fnSplit.sql" />
+    <Content Include="SQLDatabase\Scripts\ParsePassiveSocialEvents.sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetActionReqestsCount].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetActiveSocialEventProcessInfo].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetActivityFeeds].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetBuildDocUtilBatch].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetBuildErrorMessages].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetCalendarMeasuresByDay].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetErrorFixTimeStats].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetBuildDocUtilUsers].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetComments].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetErrorQuotientDocumentData].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetErrorQuotientErrorTypeData].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetErrorQuotientSessionData].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetHashtags].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetLookups].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetPassiveSocialEventsCount].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetPassiveSocialEvents].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetPrecalculatedStateMachineEvents].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetProcedureData].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetRecentCompileErrors].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetStateMachineEvents].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetTrendsAndNotifications].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[GetWatwinScoringErrorTypeData].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[InsertPostTags].sql" />
+    <Content Include="SQLDatabase\Scripts\[dbo].[MarkRead].sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiffPlex\DiffPlex.csproj">
+      <Project>{42ed3f62-53c5-4880-b9b8-f8b78f575353}</Project>
+      <Name>DiffPlex</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OSBIDE.Library\OSBIDE.Library.csproj">
+      <Project>{a38761c0-8f42-4c04-9daa-05989b3971d0}</Project>
+      <Name>OSBIDE.Library</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

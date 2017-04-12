@@ -1,0 +1,92 @@
+﻿@model OSBIDE.Web.Models.Analytics.ProcedureResults
+@using OSBIDE.Web.Models.Analytics
+@using OSBIDE.Data.DomainObjects
+
+@Styles.Render("~/Content/bootstrap.css")
+
+<section data-tab="Analytics" id="analytics" class="container-fluid">
+
+    @using (Html.BeginForm("Charts", "Analytics", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div data-wzstep="@WizardSteps.Results">
+
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-8">
+                    <h2>Procedure Results View</h2>
+                </div>
+                <div class="col-xs-2 wizard">
+                    <a data-wzstep="@WizardSteps.Refine" href="@Url.Action("Procedure")">Prev</a>
+                    <a style="display:none" data-wzstep="@WizardSteps.Procedure">Next</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-2">
+                    <h4>
+                        @Html.RadioButtonFor(m => m.ViewType, ResultViewType.Tabular, new { id = "tabular" })
+                        <label for="tabular">Tabular</label>
+                    </h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>
+                        @Html.RadioButtonFor(m => m.ViewType, ResultViewType.Bar, new { id = "histogram" })
+                        <label for="histogram">Bar Graph</label>
+                    </h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>
+                        @Html.RadioButtonFor(m => m.ViewType, ResultViewType.Scatter, new { id = "scatter" })
+                        <label for="scatter">Scatter Graph</label>
+                    </h4>
+                </div>
+                <div class="col-xs-2">
+                    <h4>
+                        @Html.RadioButtonFor(m => m.ViewType, ResultViewType.Bubble, new { id = "bubble" })
+                        <label for="bubble">Bubble Graph</label>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-9">
+                    @Html.Partial(string.Format("Results/{0}", Model.ViewType.ToString()), (List<ProcedureDataItem>)Model.Results)
+                </div>
+            </div>
+
+        </div>
+    }
+
+</section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            Results.WireupEventHandlers();
+        });
+
+        if (typeof (Results) == "undefined") {
+
+            var Results = {
+
+                WireupEventHandlers: function () {
+
+                    $("input[type='radio']").click(function (e) {
+
+                        e.stopPropagation();
+                        e.preventDefault();
+                        $("form").submit();
+                    });
+                }
+            };
+        }
+
+    </script>
+}

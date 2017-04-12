@@ -1,0 +1,96 @@
+﻿@using OSBIDE.Analytics.Web.ViewModels
+@using OSBIDE.Analytics.Library.Models
+@using OSBIDE.Library.Models
+@model List<CommentTimelineViewModel>
+@{
+    ViewBag.Title = "Questions With Responses";
+    List<CommentTimelineViewModel> comments = Model;
+    OsbideUser student = new OsbideUser();
+    if (comments.Count > 0)
+    {
+        student = comments.First().Author;
+    }
+    int rowCounter = 0;
+}
+@section header
+{
+    <style type="text/css">
+        #activityTable, #activityTable th, #activityTable td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#activityTable").tablesorter();
+        }
+);
+    </script>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/tablesorter")
+}
+<h1>Expert-Coded Questions that have Responses</h1>
+<table id="activityTable" class="tablesorter">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Comemnt ID</th>
+            <th>Student</th>
+            <th>User ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Comment</th>
+            <th>Programming State</th>
+            <th>CodeDiff</th>
+            <th>C Is Question</th>
+            <th>E Help Acknowledged</th>
+            <th>C Help Acknowledged</th>
+            <th>C # Responses</th>
+            <th>E Category</th>
+            <th>E SubCategory</th>
+            <th>E 1st Modifier</th>
+            <th>E 2nd Modifier</th>
+            <th>E 3rd Modifier</th>
+            <th>E Code Modifier</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CommentTimelineViewModel comment in comments)
+        {
+            rowCounter++;
+            DateTime commentDate = comment.Log.DateReceived;
+            DateTime rawUtc = new DateTime(commentDate.Year, commentDate.Month, commentDate.Day, commentDate.Hour, commentDate.Minute, commentDate.Second, DateTimeKind.Utc);
+            <tr>
+                <td>@rowCounter</td>
+                <td>@Html.ActionLink(comment.Timeline.Id.ToString(), "DocumentSaveTimeline", "CommentAnalyzer", new { id = comment.Timeline.Id }, new { }) </td>
+                <td>@comment.Author.FirstAndLastName</td>
+                <td>@comment.Author.Id</td>
+                <td>
+                    @rawUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")
+                </td>
+                <td>
+                    @comment.Log.LogType.Replace("Event", "")
+                </td>
+                <td>
+                    @comment.Timeline.Comment
+                </td>
+                <td>
+                    @comment.Timeline.ProgrammingState.State (@(Math.Round((comment.Timeline.ProgrammingState.EndTime - comment.Timeline.ProgrammingState.StartTime).TotalMinutes, 2))m)
+                </td>
+                <td>@comment.CodeDiff</td>
+                <td>@comment.Timeline.CrowdQuestionCount / @comment.Timeline.QuestionCodings.Count</td>
+                <td>@comment.Timeline.ExpertCoding.HelpAcknowledged</td>
+                <td>@comment.Timeline.CrowdHelpAcknowledged</td>
+                <td>@comment.Timeline.AnswerCodings.Count</td>
+                <td>@comment.Timeline.ExpertCoding.Category</td>
+                <td>@comment.Timeline.ExpertCoding.SubCategory</td>
+                <td>@comment.Timeline.ExpertCoding.PrimaryModifier</td>
+                <td>@comment.Timeline.ExpertCoding.SecondaryModifier</td>
+                <td>@comment.Timeline.ExpertCoding.TertiaryModifier</td>
+                <td>@comment.Timeline.ExpertCoding.CodeModifier</td>
+            </tr>
+        }
+    </tbody>
+</table>

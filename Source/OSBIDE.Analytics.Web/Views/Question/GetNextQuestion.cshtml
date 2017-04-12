@@ -1,0 +1,42 @@
+﻿@model OSBIDE.Analytics.Web.ViewModels.GetNextQuestionViewModel
+@{
+    ViewBag.Title = "GetNextQuestion";
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#YesButton").click(function () {
+                $("#IsQuestion").val("true");
+                $("#QuestionForm").submit();
+            });
+
+            $("#NoButton").click(function () {
+                $("#IsQuestion").val("false");
+                $("#QuestionForm").submit();
+            });
+        });
+    </script>
+}
+<h1>A student wrote...</h1>
+<div style="border:1px solid black; margin:4px; padding:4px; background-color:#EFEFEF; font-size:1.2em; font-family:Verdana, Geneva, Tahoma, sans-serif;">
+    @Model.Post.Content
+</div>
+@using (Html.BeginForm("GetNextQuestion", "Question", FormMethod.Post, new { id = "QuestionForm" }))
+{
+    @Html.HiddenFor(m => m.StudentId)
+    @Html.HiddenFor(m => m.IsQuestion)
+    @Html.HiddenFor(m => m.Post.Id)
+    <div>
+        Based on the following definition:
+        <blockquote>The comment asks a question within the post, or phrases a statement with a question mark in order to indicate that s/he is really asking a question. </blockquote>
+    </div>
+    <div>
+        Is the above comment a question?
+    </div>
+    <div>
+        <button id="YesButton">Yes</button>
+        <button id="NoButton">No</button>
+    </div>
+}

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/OSBIDE.Library.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="OsbideWebService_Echo_InputMessage">
+    <wsdl:part name="parameters" element="Echo" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_Echo_OutputMessage">
+    <wsdl:part name="parameters" element="EchoResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_Login_InputMessage">
+    <wsdl:part name="parameters" element="Login" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetActiveUser_InputMessage">
+    <wsdl:part name="parameters" element="GetActiveUser" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetActiveUser_OutputMessage">
+    <wsdl:part name="parameters" element="GetActiveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_IsValidKey_InputMessage">
+    <wsdl:part name="parameters" element="IsValidKey" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_IsValidKey_OutputMessage">
+    <wsdl:part name="parameters" element="IsValidKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetMostRecentWhatsNewItem_InputMessage">
+    <wsdl:part name="parameters" element="GetMostRecentWhatsNewItem" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetMostRecentWhatsNewItem_OutputMessage">
+    <wsdl:part name="parameters" element="GetMostRecentWhatsNewItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetMostRecentSocialActivity_InputMessage">
+    <wsdl:part name="parameters" element="GetMostRecentSocialActivity" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetMostRecentSocialActivity_OutputMessage">
+    <wsdl:part name="parameters" element="GetMostRecentSocialActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetCoursesForUser_InputMessage">
+    <wsdl:part name="parameters" element="GetCoursesForUser" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetCoursesForUser_OutputMessage">
+    <wsdl:part name="parameters" element="GetCoursesForUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetAssignmentsForCourse_InputMessage">
+    <wsdl:part name="parameters" element="GetAssignmentsForCourse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetAssignmentsForCourse_OutputMessage">
+    <wsdl:part name="parameters" element="GetAssignmentsForCourseResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitAssignment_InputMessage">
+    <wsdl:part name="parameters" element="SubmitAssignment" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitAssignment_OutputMessage">
+    <wsdl:part name="parameters" element="SubmitAssignmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetLastAssignmentSubmitDate_InputMessage">
+    <wsdl:part name="parameters" element="GetLastAssignmentSubmitDate" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_GetLastAssignmentSubmitDate_OutputMessage">
+    <wsdl:part name="parameters" element="GetLastAssignmentSubmitDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitLocalErrorLog_InputMessage">
+    <wsdl:part name="parameters" element="SubmitLocalErrorLog" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitLocalErrorLog_OutputMessage">
+    <wsdl:part name="parameters" element="SubmitLocalErrorLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitLog_InputMessage">
+    <wsdl:part name="parameters" element="SubmitLog" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_SubmitLog_OutputMessage">
+    <wsdl:part name="parameters" element="SubmitLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_LibraryVersionNumber_InputMessage">
+    <wsdl:part name="parameters" element="LibraryVersionNumber" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_LibraryVersionNumber_OutputMessage">
+    <wsdl:part name="parameters" element="LibraryVersionNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_OsbidePackageUrl_InputMessage">
+    <wsdl:part name="parameters" element="OsbidePackageUrl" />
+  </wsdl:message>
+  <wsdl:message name="OsbideWebService_OsbidePackageUrl_OutputMessage">
+    <wsdl:part name="parameters" element="OsbidePackageUrlResponse" />
+  </wsdl:message>
+  <wsdl:portType name="OsbideWebService">
+    <wsdl:operation name="Echo">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/Echo" message="OsbideWebService_Echo_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/EchoResponse" message="OsbideWebService_Echo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/Login" message="OsbideWebService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/LoginResponse" message="OsbideWebService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActiveUser">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetActiveUser" message="OsbideWebService_GetActiveUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetActiveUserResponse" message="OsbideWebService_GetActiveUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsValidKey">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/IsValidKey" message="OsbideWebService_IsValidKey_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/IsValidKeyResponse" message="OsbideWebService_IsValidKey_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMostRecentWhatsNewItem">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetMostRecentWhatsNewItem" message="OsbideWebService_GetMostRecentWhatsNewItem_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetMostRecentWhatsNewItemResponse" message="OsbideWebService_GetMostRecentWhatsNewItem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMostRecentSocialActivity">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetMostRecentSocialActivity" message="OsbideWebService_GetMostRecentSocialActivity_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetMostRecentSocialActivityResponse" message="OsbideWebService_GetMostRecentSocialActivity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoursesForUser">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetCoursesForUser" message="OsbideWebService_GetCoursesForUser_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetCoursesForUserResponse" message="OsbideWebService_GetCoursesForUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAssignmentsForCourse">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetAssignmentsForCourse" message="OsbideWebService_GetAssignmentsForCourse_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetAssignmentsForCourseResponse" message="OsbideWebService_GetAssignmentsForCourse_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitAssignment">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/SubmitAssignment" message="OsbideWebService_SubmitAssignment_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/SubmitAssignmentResponse" message="OsbideWebService_SubmitAssignment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastAssignmentSubmitDate">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/GetLastAssignmentSubmitDate" message="OsbideWebService_GetLastAssignmentSubmitDate_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/GetLastAssignmentSubmitDateResponse" message="OsbideWebService_GetLastAssignmentSubmitDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitLocalErrorLog">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/SubmitLocalErrorLog" message="OsbideWebService_SubmitLocalErrorLog_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/SubmitLocalErrorLogResponse" message="OsbideWebService_SubmitLocalErrorLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitLog">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/SubmitLog" message="OsbideWebService_SubmitLog_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/SubmitLogResponse" message="OsbideWebService_SubmitLog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LibraryVersionNumber">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/LibraryVersionNumber" message="OsbideWebService_LibraryVersionNumber_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/LibraryVersionNumberResponse" message="OsbideWebService_LibraryVersionNumber_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OsbidePackageUrl">
+      <wsdl:input wsaw:Action="urn:OsbideWebService/OsbidePackageUrl" message="OsbideWebService_OsbidePackageUrl_InputMessage" />
+      <wsdl:output wsaw:Action="urn:OsbideWebService/OsbidePackageUrlResponse" message="OsbideWebService_OsbidePackageUrl_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

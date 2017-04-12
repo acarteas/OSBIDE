@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/OSBIDE.Library.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/OSBIDE.Library.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OsbideUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="InstitutionId" type="xs:int" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastVsActivity" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ProfileImage" nillable="true" type="tns:ProfileImage" />
+      <xs:element minOccurs="0" name="RoleValue" type="xs:int" />
+      <xs:element minOccurs="0" name="SchoolId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OsbideUser" nillable="true" type="tns:OsbideUser" />
+  <xs:complexType name="ProfileImage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Picture" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="User" nillable="true" type="tns:OsbideUser" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProfileImage" nillable="true" type="tns:ProfileImage" />
+  <xs:complexType name="LocalErrorLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LogDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Sender" nillable="true" type="tns:OsbideUser" />
+      <xs:element minOccurs="0" name="SenderId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocalErrorLog" nillable="true" type="tns:LocalErrorLog" />
+  <xs:complexType name="EventLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AssemblyVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:EventLogData" />
+      <xs:element minOccurs="0" name="DateReceived" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LogType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SenderId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventLog" nillable="true" type="tns:EventLog" />
+  <xs:complexType name="EventLogData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BinaryData" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="LogId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EventLogData" nillable="true" type="tns:EventLogData" />
+</xs:schema>

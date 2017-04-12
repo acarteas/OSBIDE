@@ -1,0 +1,23 @@
+﻿@model List<OSBIDE.Web.Models.Analytics.ProcedureDataItem>
+
+<table id="error-quotient-result" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>@ViewBag.ScoreTitle</th>
+            <th>Avg Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.InstitutionId</td>
+                <td>@row.Name</td>
+                <td>@row.Score</td>
+                <td>@string.Format("{0}%", row.Grade)</td>
+            </tr>
+        }
+    </tbody>
+</table>

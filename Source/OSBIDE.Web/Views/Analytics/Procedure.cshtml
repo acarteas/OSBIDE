@@ -1,0 +1,133 @@
+﻿@model OSBIDE.Web.Models.Analytics.ProcedureSettings
+
+@using OSBIDE.Web.Models.Analytics
+@using OSBIDE.Data.DomainObjects
+
+@Styles.Render("~/Content/bootstrap.css")
+
+<section data-tab="Analytics" id="analytics" class="container-fluid">
+
+    @using (Html.BeginForm("ProcedureHandler", "Analytics", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <input type="hidden" name="ActionSelector" value="@Model.SelectedProcedureType" />
+
+        <div data-wzstep="@WizardSteps.Procedure">
+
+            <div class="row">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-10">
+                    <h2>Choose Procedure and Parameters</h2>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Analytics Procedure:</label>
+                <div class="col-xs-3">
+                    <select id="SelectedProcedureType" name="SelectedProcedureType" class="form-control">
+                        @foreach (var e in Enum<ProcedureType>.Get())
+                        {
+                            var selected = e.Value == (int)Model.SelectedProcedureType ? "selected" : string.Empty;
+                            <option value="@e.Value" @selected>@e.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div id="procedure-params">
+                @if (Model.SelectedProcedureType == ProcedureType.WatwinScoring)
+                {
+                    Html.RenderPartial("WatwinScoring", (WatwinScoringParams)Model.ProcedureParams);
+                }
+                else
+                {
+                    Html.RenderPartial("ErrorQuotient", (ErrorQuotientParams)Model.ProcedureParams);
+                }
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-6">
+                </div>
+                <div class="col-xs-2 wizard">
+                    <a data-wzstep="@WizardSteps.Refine" href="@Url.Action("Refine")">Prev</a>
+                    <a data-wzstep="@WizardSteps.Results">Next</a>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#SelectedProcedureType").val("@Model.SelectedProcedureType.ToString("d")");
+            Procedure.WireupEventHandlers();
+        });
+
+        if (typeof (Procedure) == "undefined") {
+
+            var Procedure = {
+
+                Validate: function () {
+
+                    if ($(".has-error").length > 0) {
+
+                        alert("Please enter proper procedure parameters in the red input areas.");
+                        return false;
+                    }
+                    return true;
+                },
+
+                WireupEventHandlers: function () {
+
+                    $("#SelectedProcedureType").change(function () {
+                        
+                        var selected = $(this).val();
+                        if (selected == "@ProcedureType.DataVisualization.ToString("d")") {
+                            window.location = "@Url.Content("~/DataVisualization/")";
+                        }
+                        else if (selected == "@ProcedureType.CalendarVisualization.ToString("d")") {
+                            window.location = "@Url.Content("~/CalendarVisualization/")";
+                        }
+                        else {
+                            $("input[name='ActionSelector']").val("ChangeProcedure");
+                            $("form").submit();
+                        }
+                    });
+
+                    $("a[data-wzstep='@WizardSteps.Results']").click(function (e) {
+
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if (Procedure.Validate()) {
+
+                            var actionName = $("#SelectedProcedureType").children("[selected]:first").text().replace(/\s/g, "");
+                            $("input[name='ActionSelector']").val(actionName);
+                            $("form").submit();
+                        }
+                    });
+
+                    $("input[type='text']").change(function () {
+
+                        var param = parseInt($(this).val());
+
+                        if ($(this).val().length > 0 && (isNaN(param) || param < 0 || param > 10)) {
+
+                            $(this).parent().addClass("has-error");
+                        }
+                        else {
+
+                            $(this).parent().removeClass("has-error");
+                        }
+                    });
+                }
+            };
+        }
+
+    </script>
+}

@@ -1,0 +1,7 @@
+﻿@using OSBIDE.Library.Events
+@model OSBIDE.Web.Models.AggregateFeedItem  
+@{
+    FeedPostEvent comment = Model.Items.First().Event as FeedPostEvent;
+} 
+@Model.Creator.FirstName wrote: <br />
+@comment.Comment

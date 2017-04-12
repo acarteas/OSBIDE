@@ -1,0 +1,28 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@model OSBIDE.Library.Models.EventLog
+@{
+    OsbideUser CurrentUser = ViewBag.CurrentUser;
+}
+<section class="log-comments">
+    <h1>Comments</h1>
+    @if (Model.Comments.Count == 0)
+    {
+        <text>No comments.</text>
+    }
+    @foreach (LogCommentEvent comment in Model.Comments)
+    {
+        @Html.Partial("_CommentSingle", comment)
+    }
+    <h2>Post a Comment</h2>
+    @using (Html.BeginForm("PostComment", "Home"))
+    {
+        
+        <div>
+            <textarea style="width: 100%; height: 200px" name="comment"></textarea></div>
+        <input type="hidden" name="logId" value="@Model.Id" />
+        <input type="hidden" name="returnUrl" value="@Request.Url.AbsoluteUri" />
+        <input type="submit" name="submit" value="Post" />
+        <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+    }
+</section>

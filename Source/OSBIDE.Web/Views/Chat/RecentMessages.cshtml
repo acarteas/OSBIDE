@@ -1,0 +1,30 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Web.Models
+@using OSBIDE.Web.Models.ViewModels
+@model ChatRoomViewModel
+@{
+    Layout = null;
+}
+@foreach (ChatMessage message in Model.Messages)
+{
+    <section class="log-comment-single" data-id="@message.Id" data-timestamp="@message.MessageDate.Ticks">
+        <div class="log-comment-profile-picture">
+            <img src="@Url.Action("Picture", "Profile", new { id = message.AuthorId, size = 48 })" title="profile image" alt="profile image" style="float:left;" />
+        </div>
+        <div class="log-comment-content">
+            <h1>@message.Author.FirstAndLastName</h1>
+            <h2>
+            <time 
+                class="utc-time"
+                datetime="@Helpers.DateAsUnixTime(message.MessageDate)" 
+                data-original-date="@Helpers.RawDate(message.MessageDate)" 
+                data-date-format="MM/DD/YYYY hh:mm A">
+                @message.MessageDate.ToString("MM/dd @ hh:mmtt") (UTC)
+            </time>
+        </h2>
+            <p>
+                @message.Message
+            </p>
+        </div>
+    </section>
+}

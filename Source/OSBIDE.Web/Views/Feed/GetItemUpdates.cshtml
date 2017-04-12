@@ -1,0 +1,13 @@
+﻿@{
+    Layout = null;
+}
+@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@model List<LogCommentEvent>
+<input type="hidden" id="last-poll-tick" value="@ViewBag.LastPollTick" />
+@foreach (LogCommentEvent comment in Model)
+{
+    @Html.Partial("_CommentSingle", comment)
+}

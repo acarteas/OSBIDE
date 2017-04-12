@@ -1,0 +1,138 @@
+﻿@model List<OSBIDE.Web.Models.Analytics.ProcedureDataItem>
+@using OSBIDE.Web.Models.Analytics
+
+@Styles.Render("~/Content/bootstrap.css")
+
+<section data-tab="Analytics" id="analytics" class="container-fluid">
+
+    @using (Html.BeginForm("Procedure", "Analytics", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div data-wzstep="@WizardSteps.Refine">
+
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-8">
+                    <h2>Refine Procedure Data</h2>
+                </div>
+                <div class="col-xs-2 wizard">
+                    <a data-wzstep="@WizardSteps.Criteria" href="@Url.Action("Criteria")">Prev</a>
+                    <a data-wzstep="@WizardSteps.Procedure">Next</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-8">
+                    Your query returned @Model.Count results. Remove items by unchecking them.
+                </div>
+            </div>
+
+            <div class="col-xs-1">
+            </div>
+            <div class="col-xs-11">
+                <table id="studentlist" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @if (Model.Count > 0)
+                                {
+                                    <input type="checkbox" id="selectAll" checked="checked" />
+                                }
+                            </th>
+                            <th>Student Id</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Age</th>
+                            <th>Ethnicity</th>
+                            <th>Class</th>
+                            <th>Deliverable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var row in Model)
+                    {
+                        var selectionState = @row.IsSelected ? "checked='checked'" : string.Empty;
+                        <tr>
+                            <td><input name="SelectedDataItems" value="@row.Id" type="checkbox" @selectionState /></td>
+                            <td>@row.InstitutionId</td>
+                            <td>@row.Name</td>
+                            <td>@row.Gender</td>
+                            <td>@row.Age</td>
+                            <td>@row.Ethnicity</td>
+                            <td>@row.Class</td>
+                            <td>@row.Deliverable</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    }
+</section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        Refine.WireupEventHandlers();
+    });
+
+    if (typeof (Refine) == "undefined") {
+
+        var Refine = {
+
+            Validate: function () {
+
+                if ($("input:checked").length > 0) {
+                    return true;
+                }
+                else {
+                    alert("Please select data entries to proceed the procedure calculations.");
+                    return false;
+                }
+            },
+
+            WireupEventHandlers: function () {
+
+                $("a[data-wzstep='@WizardSteps.Procedure']").click(function (e) {
+
+                    e.stopPropagation();
+                    e.preventDefault();
+                    if (Refine.Validate()) {
+
+                        $("form").submit();
+                    }
+                });
+
+                $("td input[type='checkbox']").click(function () {
+
+                    if ($("td input[type='checkbox']").length == $("td input:checked").length) {
+
+                        $("th input[type='checkbox']").prop("checked", "checked");
+                    }
+                    else {
+                        $("th input[type='checkbox']").removeAttr("checked");
+                    }
+                })
+
+                $("th input[type='checkbox']").click(function () {
+
+                    if ($(this).is(":checked")) {
+
+                        $("td input[type='checkbox']").prop("checked", "checked");
+                    }
+                    else {
+                        $("td input[type='checkbox']").removeAttr("checked");
+                    }
+                })
+            }
+        };
+    }
+
+    </script>
+}

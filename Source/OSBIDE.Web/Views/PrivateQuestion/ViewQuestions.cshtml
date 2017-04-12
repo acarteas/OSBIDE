@@ -1,0 +1,25 @@
+﻿@using OSBIDE.Library.Models
+@model List<OSBIDE.Library.Models.PrivateQuestion>
+
+@{
+    ViewBag.Title = "View";
+}
+@foreach (PrivateQuestion question in Model)
+{
+    <div>
+        <img src="@Url.Action("Picture", "Profile", new { id = question.UserId, size = 48 })" title="profile image" alt="profile image" style="float:left;" />
+        <h2>@question.User.FirstAndLastName</h2>
+        <h3>
+            <time 
+                class="utc-time"
+                datetime="@Helpers.DateAsUnixTime(question.SubmissionDate)" 
+                data-original-date="@Helpers.RawDate(question.SubmissionDate)" 
+                data-date-format="MM/DD/YYYY hh:mm A">
+                @question.SubmissionDate.ToShortDateString() @question.SubmissionDate.ToShortTimeString() (UTC)
+            </time>
+        </h3>
+        <p style="clear: both;">
+            @question.Question
+        </p>
+    </div>
+}

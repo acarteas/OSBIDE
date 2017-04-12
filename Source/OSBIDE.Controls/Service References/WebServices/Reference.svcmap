@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c0681c8d-33c7-4e99-a311-a454b228ecfb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:24867/Services/OsbideWebService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OsbideWebService.xsd" MetadataType="Schema" ID="55204679-e923-4ef8-b1fb-df0ce42b508c" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd2" />
+    <MetadataFile FileName="OsbideWebService1.xsd" MetadataType="Schema" ID="fd3dde41-99e5-4191-b38a-10507fd563e2" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd1" />
+    <MetadataFile FileName="OsbideWebService2.xsd" MetadataType="Schema" ID="e4758b98-7d80-43d1-ae0e-8729f510b744" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?xsd=xsd0" />
+    <MetadataFile FileName="OsbideWebService.wsdl" MetadataType="Wsdl" ID="b655e2e7-2d49-472a-b0e2-ddc8ab5561f6" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?wsdl" />
+    <MetadataFile FileName="OsbideWebService1.wsdl" MetadataType="Wsdl" ID="ce888b02-7ca6-46e3-a019-1ebfa2b629c4" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="OsbideWebService.disco" MetadataType="Disco" ID="7a33da5d-c823-47c7-97c4-ffa0598a460a" SourceId="1" SourceUrl="http://localhost:24867/Services/OsbideWebService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

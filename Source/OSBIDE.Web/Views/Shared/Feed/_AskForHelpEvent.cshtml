@@ -1,0 +1,10 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@using System.IO
+@model OSBIDE.Web.Models.AggregateFeedItem
+@{
+    AskForHelpEvent help = Model.Items.First().Event as AskForHelpEvent;
+} 
+@Model.Creator.FirstName asked the following question: <br />
+@help.UserComment;

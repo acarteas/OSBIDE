@@ -1,0 +1,23 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@model Assignment
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<section id="submit-assignment-files" title="Submit Assignment Files">
+    @using (Html.BeginForm("SubmitAssignmentFile", "Course", FormMethod.Post, new { enctype = "multipart/form-data", id = "submit-assignment-files-form" }))
+    {
+        <p>
+            Use the form below to select one or more files from your computer to submit for the assignment:
+            &quot;<span id="submit-assignment-files-name">@Model.Name</span>.&quot;
+        </p>
+        <br />
+        <input type="file" name="file" />
+        <input type="hidden" id="submit-assignment-files-id" name="AssignmentId" value="@Model.Id" />
+        <input type="hidden" name="CourseId" value="@Model.CourseId" />
+        <input id="submit-assignment-files-submit" type="submit" value="Submit File(s)" name="submit-files" />
+    }
+</section>

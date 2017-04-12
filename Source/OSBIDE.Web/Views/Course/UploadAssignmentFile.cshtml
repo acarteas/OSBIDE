@@ -1,0 +1,21 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@model Assignment
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<section id="upload-assignment-files" title="Upload Assignment Files">
+@using (Html.BeginForm("UploadAssignmentFile", "Course", FormMethod.Post, new { enctype = "multipart/form-data", id = "upload-assignment-files-form" }))
+{
+    <p>Use the form below to select one or more files from your computer to attach to the assignment 
+    &quot;<span id="upload-assignment-files-name">@Model.Name</span>.&quot;</p>
+    <br />
+    <input type="file" multiple="multiple" name="files" />
+    <input type="hidden" id="upload-assignment-files-id" name="AssignmentId" value="@Model.Id" />
+    <input type="hidden" name="CourseId" value="@Model.CourseId" />
+    <input id="upload-assignment-files-submit" type="submit" value="Upload File(s)" name="upload-files" />
+}
+</section>

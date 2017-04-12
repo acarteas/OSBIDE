@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A38761C0-8F42-4C04-9DAA-05989B3971D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OSBIDE.Library</RootNamespace>
+    <AssemblyName>OSBIDE.Library</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>library key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OSBIDE Deployment|AnyCPU'">
+    <OutputPath>bin\OSBIDE Deployment\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\OSBIDE.Library.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'OSBIDE Deployment|x86'">
+    <OutputPath>bin\x86\OSBIDE Deployment\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EnvDTE100, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EnvDTE80, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EnvDTE90, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EnvDTE90a, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="FileCache.Signed, Version=2.0.1.0, Culture=neutral, PublicKeyToken=7542c4e7f6a4d381, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FileCache.Signed.2.0.1\lib\FileCache.Signed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DotNetZip.1.9.1.8\lib\net20\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop, Version=7.1.40304.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.10.0, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.9.0, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AesEncryption.cs" />
+    <Compile Include="BitmapExtensions.cs" />
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="CSV\CsvDriver.cs" />
+    <Compile Include="CSV\CsvParser.cs" />
+    <Compile Include="CSV\CsvReader.cs" />
+    <Compile Include="CSV\CsvState.cs" />
+    <Compile Include="CSV\CsvWriter.cs" />
+    <Compile Include="CSV\CsvWriterLine.cs" />
+    <Compile Include="CSV\DefaultState.cs" />
+    <Compile Include="CSV\EndState.cs" />
+    <Compile Include="CSV\QuoteState.cs" />
+    <Compile Include="CSV\SecondQuoteState.cs" />
+    <Compile Include="DisjointSet.cs" />
+    <Compile Include="Events\AskForHelpEvent.cs" />
+    <Compile Include="Events\BreakpointToggleEvent.cs" />
+    <Compile Include="Events\BuildEvent.cs" />
+    <Compile Include="Events\EventType.cs" />
+    <Compile Include="Events\FeedPostEvent.cs" />
+    <Compile Include="Events\HelpfulMarkGivenEvent.cs" />
+    <Compile Include="Events\LogCommentEvent.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="IconConverter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IdenticonRenderer.cs" />
+    <Compile Include="Models\ActionRequestLog.cs" />
+    <Compile Include="Models\Assignment.cs" />
+    <Compile Include="Models\BuildDocument.cs" />
+    <Compile Include="Models\BuildError.cs" />
+    <Compile Include="Models\ChatRoomUser.cs" />
+    <Compile Include="Models\CodedOsbideFeedItem.cs" />
+    <Compile Include="Models\CourseRole.cs" />
+    <Compile Include="Models\CourseUserRelationship.cs" />
+    <Compile Include="Models\ErrorType.cs" />
+    <Compile Include="Models\BuildEventBreakPoint.cs" />
+    <Compile Include="Models\BuildEventErrorListItem.cs" />
+    <Compile Include="Models\ChatMessage.cs" />
+    <Compile Include="Models\ChatRoom.cs" />
+    <Compile Include="Models\CodeDocumentBreakPoint.cs" />
+    <Compile Include="Events\CutCopyPasteEvent.cs" />
+    <Compile Include="Events\IOsbideEventGenerator.cs" />
+    <Compile Include="Events\EventGenerator.cs" />
+    <Compile Include="Events\SolutionDownloadEvent.cs" />
+    <Compile Include="Events\SubmitEvent.cs" />
+    <Compile Include="Logging\LogMessage.cs" />
+    <Compile Include="Models\CodeDocument.cs" />
+    <Compile Include="Events\DebugEvent.cs" />
+    <Compile Include="Events\EditorActivityEvent.cs" />
+    <Compile Include="Events\EventCreatedArgs.cs" />
+    <Compile Include="Events\EventFactory.cs" />
+    <Compile Include="Events\EventHandlerBase.cs" />
+    <Compile Include="Events\ExceptionEvent.cs" />
+    <Compile Include="Events\OsbideEventHandler.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="LibraryBinder.cs" />
+    <Compile Include="Logging\LocalErrorLogger.cs" />
+    <Compile Include="Models\BreakPoint.cs" />
+    <Compile Include="Models\CodeDocumentErrorListItem.cs" />
+    <Compile Include="Models\DocumentFactory.cs" />
+    <Compile Include="Models\EventLogData.cs" />
+    <Compile Include="Models\EventLogSubscription.cs" />
+    <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\OsbideContextIfNotExistsInitializer.cs" />
+    <Compile Include="Models\PassiveSocialEvent.cs" />
+    <Compile Include="Models\PrivateQuestion.cs" />
+    <Compile Include="Models\ProfileImage.cs" />
+    <Compile Include="Models\ServerLog.cs" />
+    <Compile Include="Models\SocialActivityLog.cs" />
+    <Compile Include="Models\StudentGrade.cs" />
+    <Compile Include="Models\Syllable.cs" />
+    <Compile Include="Models\UserFeedSetting.cs" />
+    <Compile Include="Models\UserScore.cs" />
+    <Compile Include="Models\UserSubscription.cs" />
+    <Compile Include="Models\IModelBuilderExtender.cs" />
+    <Compile Include="Models\IVSDocument.cs" />
+    <Compile Include="Models\LocalErrorLog.cs" />
+    <Compile Include="Models\OsbideContextAlwaysCreateInitializer.cs" />
+    <Compile Include="Models\OsbideContextModelChangeInitializer.cs" />
+    <Compile Include="Models\OsbideContextSeeder.cs" />
+    <Compile Include="Models\School.cs" />
+    <Compile Include="Models\StackFrame.cs" />
+    <Compile Include="Models\StackFrameVariable.cs" />
+    <Compile Include="Models\Triggers\ModelTrigger.cs" />
+    <Compile Include="Models\UserPassword.cs" />
+    <Compile Include="Models\WhatsNewItem.cs" />
+    <Compile Include="NeedlemanWunsch.cs" />
+    <Compile Include="NTree.cs" />
+    <Compile Include="OsbideDeserializationBinder.cs" />
+    <Compile Include="OsbideVsComponent.cs" />
+    <Compile Include="StringConstants.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ErrorListItem.cs" />
+    <Compile Include="Events\IOsbideEvent.cs" />
+    <Compile Include="Models\EventLog.cs" />
+    <Compile Include="Models\OsbideContext.cs" />
+    <Compile Include="Models\OutputWindow.cs" />
+    <Compile Include="Events\SaveEvent.cs" />
+    <Compile Include="Models\OsbideUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="library key.snk" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

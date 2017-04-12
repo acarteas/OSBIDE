@@ -1,0 +1,88 @@
+﻿@model OSBIDE.Data.DomainObjects.WatwinScoringParams
+@using OSBIDE.Data.DomainObjects
+
+<div class="row form-group">
+    <label class="col-xs-2 control-label">eline-range (error):</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.ElineRange, new { @class = "form-control", placeholder = "[-1, 1]" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="eline-range specifies what would constitute
+             an error on the “same line”; a 0 would literally mean
+that two subsequent errors would need to be on exactly the same line, while the range [-
+3,3] would indicate that any error within three lines (in either direction) would constitute being
+“on the same line.”" />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">eline-penalty (error):</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.SameLinePenalty, new { @class = "form-control", placeholder = "2" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="eline-penalty is applied when an error occurs on the same line." />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">etype-same-penalty:</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.SameTypePenalty, new { @class = "form-control", placeholder = "4" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="etype-same-penaltyis applied when the error type reported is the same as the previous compilation
+result." />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">Same Error Penalty:</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.SameErrorPenalty, new { @class = "form-control", placeholder = "4" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="This penalty is applied when the errors are exactly the same and have the same message." />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">Fast Solve Penalty:</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.FastSolvePenalty, new { @class = "form-control", placeholder = "1" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="This penalty is applied when a student solves an error faster than 1 standard deviation below the average time" />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">Medium Solve Penalty:</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.MedSolvePenalty, new { @class = "form-control", placeholder = "15" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="This penalty is applied when a student solves an error within 1 standard deviation of the average time" />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">Slow Solve Penalty:</label>
+    <div class="col-xs-3">
+        @Html.TextBoxFor(m => m.SlowSolvePenalty, new { @class = "form-control", placeholder = "25" })
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="This penalty is applied when a student solves an error slower than 1 standard deviation above the average time" />
+    </div>
+</div>
+<div class="row form-group">
+    <label class="col-xs-2 control-label">Errors Considered:</label>
+    <div class="col-xs-3">
+        <select name="ErrorsConsidered" class="form-control">
+            @foreach (var e in Enum<ErrorsConsidered>.Get())
+            {
+                <option value="@e.Value">@e.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-xs-1">
+        <img src="@Url.Content("~/Content/icons/tooltip.png")" data-type="icon" title="This decides how many errors are taken into consideration per build event" />
+    </div>
+</div>
+
+
+

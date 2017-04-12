@@ -1,0 +1,106 @@
+﻿@using OSBIDE.Analytics.Web.ViewModels
+@using OSBIDE.Analytics.Library.Models
+@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Library.Extensions
+
+@model BuildDocumentsViewModel
+@{
+    ViewBag.Title = "Build Documents";
+    string buildDate = string.Format("{0} at {1}", Model.CurrentBuild.EventLog.DateReceived.LocalFromUtc().ToShortDateString(), Model.CurrentBuild.EventLog.DateReceived.LocalFromUtc().ToLongTimeString());
+}
+@section header
+{
+    <style type="text/css">
+        #activityTable, #activityTable th, #activityTable td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$("#activityTable").tablesorter();
+            hljs.initHighlightingOnLoad();
+        }
+);
+    </script>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/tablesorter")
+    @Scripts.Render("~/bundles/highlight")
+    @Styles.Render("~/Content/css/highlight")
+}
+<h1>Build of @Model.CurrentBuild.SolutionName by @Model.CurrentBuild.EventLog.Sender.FirstAndLastName</h1>
+<ul>
+    <li>time: @buildDate</li>
+    <li>State: @if(Model.BuildState != null){ <text>@Model.BuildState.State</text>}</li>
+</ul>
+<div>
+    @if (Model.PreviousInterestingBuild != null && Model.CurrentBuild.Id != Model.PreviousInterestingBuild.Id)
+    {
+        @:Previous interesting build at @Model.PreviousInterestingBuild.EventLog.DateReceived.LocalFromUtc().ToShortDateString()
+        @:at @Model.PreviousInterestingBuild.EventLog.DateReceived.LocalFromUtc().ToLongTimeString()
+        @:@Html.ActionLink("Skip back", "Documents", new { eventLogId = Model.PreviousInterestingBuild.EventLogId })
+    }
+    else
+    {
+        @:No previous interesting builds found within the previous 100 builds
+    }
+    <br />
+    @if(Model.PastBuilds.Count > 0)
+    {
+        @Html.ActionLink("Jump back 100 builds", "Documents", new { eventLogId = Model.PastBuilds.Last().EventLogId })
+        <br />
+        @Html.ActionLink("View previous build", "Documents", new { eventLogId = Model.PastBuilds.First().EventLogId })
+    }
+</div>
+<div>
+    @if(Model.NextInterestingBuild != null && Model.CurrentBuild.Id != Model.NextInterestingBuild.Id)
+    {
+        @:Next interesting build at @Model.NextInterestingBuild.EventLog.DateReceived.LocalFromUtc().ToShortDateString() 
+        @:at @Model.NextInterestingBuild.EventLog.DateReceived.LocalFromUtc().ToLongTimeString()
+        @:@Html.ActionLink("Skip ahead", "Documents", new { eventLogId = Model.NextInterestingBuild.EventLogId })
+    }
+    else
+    {
+        @:No interesting builds found within the next 100 builds
+    }
+    <br />
+    @Html.ActionLink("Skip ahead 100 builds", "Documents", new { eventLogId = Model.FutureBuilds.Last().EventLogId })
+    <br />
+    @Html.ActionLink("View next build", "Documents", new { eventLogId = Model.FutureBuilds.First().EventLogId })
+</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>File</th>
+                <th>Line</th>
+                <th>Error Type</th>
+                <th>Description</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @foreach (var error in Model.CurrentBuild.CriticalErrorItems)
+            {
+                <tr>
+                    <td>@error.ErrorListItem.File</td>
+                    <td>@error.ErrorListItem.Line</td>
+                    <td>@error.ErrorListItem.CriticalErrorName</td>
+                    <td>@error.ErrorListItem.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@foreach (CodeDocument document in Model.CurrentBuild.Documents.Select(d => d.Document))
+{
+    <article>
+        <h1>@document.FileName</h1>
+            <pre><code class="cpp">
+@document.Content
+            </code></pre>
+    </article>
+}

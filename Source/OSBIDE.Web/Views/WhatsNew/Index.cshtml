@@ -1,0 +1,24 @@
+﻿@using OSBIDE.Library.Models
+@model List<WhatsNewItem>
+@{
+    ViewBag.Title = "What's new in OSBIDE";
+}
+<h1>What's new in OSBIDE</h1>
+@foreach (WhatsNewItem item in Model)
+{
+    <article class="news-item">
+        <header>
+            <h1>@item.NewsHeader</h1>
+            <time 
+                class="utc-time"
+                datetime="@Helpers.DateAsUnixTime(item.DatePosted)" 
+                data-original-date="@Helpers.RawDate(item.DatePosted)" 
+                data-date-format="MM/DD/YYYY hh:mm A">
+                @item.DatePosted.ToString("MM/dd @ hh:mmtt") (UTC)
+            </time>
+        </header>
+        <div>
+            @Html.Raw(item.Content)
+        </div>
+    </article>
+}

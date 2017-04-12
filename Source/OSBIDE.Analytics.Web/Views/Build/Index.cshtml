@@ -1,0 +1,104 @@
+﻿@using OSBIDE.Analytics.Web.ViewModels
+@using OSBIDE.Analytics.Library.Models
+@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Library.Extensions
+
+@model BuildDiffViewModel
+@{
+    ViewBag.Title = "Build Diff Timeline";
+    OsbideUser student = Model.User;
+    CommentTimeline comment = Model.Comment;
+    EventLog originalEvent = Model.OriginalEvent;
+    DateTime commentDate = new DateTime(originalEvent.DateReceived.Ticks, DateTimeKind.Utc);
+    DateTime localDate = commentDate.ToLocalTime();
+}
+@section header
+{
+    <style type="text/css">
+        #activityTable, #activityTable th, #activityTable td {
+            border: 1px solid black;
+            padding: 3px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$("#activityTable").tablesorter();
+        }
+);
+    </script>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/tablesorter")
+}
+<h1>Builds for @student.FirstAndLastName</h1>
+<p>
+    The following builds precede and come after the following comment on @localDate.ToShortDateString() at @localDate.ToLongTimeString(): <br />
+    <blockquote>@comment.Comment</blockquote>
+</p>
+<table id="activityTable">
+    <caption>Builds Before</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Build Date</th>
+            <th>NPSM State</th>
+            <th>Files</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BuildEvent build in Model.BuildsBefore)
+        {
+            string buildDate = string.Format("{0} at {1}", build.EventLog.DateReceived.LocalFromUtc().ToShortDateString(), build.EventLog.DateReceived.LocalFromUtc().ToLongTimeString());
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                    @Html.ActionLink(buildDate, "Documents", "Build", new { eventLogId = build.EventLogId }, new { })
+                </td>
+                <td>@Model.BuildStates[build.Id].State (@Math.Round(Model.BuildStates[build.Id].TimeInState.TotalMinutes, 2)m)</td>
+                <td>
+                    <ul>
+                        @foreach (CodeDocument codeDocument in build.Documents.Select(d => d.Document).ToList())
+                        {
+                            <li>@codeDocument.FileName (@codeDocument.Lines.Count)</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table id="activityTable">
+    <caption>Builds After</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Build Date</th>
+            <th>NPSM State</th>
+            <th>Files</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BuildEvent build in Model.BuildsAfter)
+        {
+            string buildDate = string.Format("{0} at {1}", build.EventLog.DateReceived.LocalFromUtc().ToShortDateString(), build.EventLog.DateReceived.LocalFromUtc().ToLongTimeString());
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>
+                    @Html.ActionLink(buildDate, "Documents", "Build", new { eventLogId = build.EventLogId }, new { })
+                </td>
+                <td>@Model.BuildStates[build.Id].State (@Math.Round(Model.BuildStates[build.Id].TimeInState.TotalMinutes,2)m)</td>
+                <td>
+                    <ul>
+                        @foreach (CodeDocument codeDocument in build.Documents.Select(d => d.Document).ToList())
+                        {
+                            <li>@codeDocument.FileName (@codeDocument.Lines.Count)</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

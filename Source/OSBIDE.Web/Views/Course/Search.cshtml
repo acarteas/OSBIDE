@@ -1,0 +1,107 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@using System.Text
+@model CoursesViewModel
+@{
+    ViewBag.Title = "Course Search";
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/knockout")
+
+    <script type="text/javascript">
+
+        function setCourseDescription(course)
+        {
+            //toggle selection highlighting
+            $('.course-item').each(function () {
+                $(this).removeClass('selected');
+            });
+            $(course).addClass('selected');
+
+            //add in course description information
+            var dataId = $(course).attr('data-id');
+            var htmlId = '#course-' + dataId;
+            $('#course-description').html($(htmlId).html());
+
+            //set selected course
+            $('#selected-course').val(dataId);
+
+            //show signup button
+            $('#course-signup').css('visibility', 'inherit');
+        }
+
+    </script>
+
+    <style type="text/css">
+        .selected {
+            background: #ffd800;
+        }
+
+        .in-course{
+            color:#808080;
+        }
+    </style>
+}
+<h2>Courses Available At @Model.CurrentUser.SchoolObj.Name</h2>
+Select a course for more information and to sign up.
+@if(Model.ServerMessage.Length > 0)
+{
+ <div class="notice">
+    @Model.ServerMessage
+</div>   
+}
+<div>
+    <ul>
+        @{
+            int[] registeredCourseIds = Model.CurrentUser.CourseUserRelationships.Select(c => c.CourseId).ToArray();
+        }
+        @foreach (KeyValuePair<string, SortedDictionary<string, Course>> kvp in Model.CoursesByPrefix)
+        {
+            foreach (KeyValuePair<string, Course> prefix in kvp.Value)
+            {
+                if(registeredCourseIds.Contains(prefix.Value.Id) == false)
+                { 
+                    <li class="course-item" data-id="@prefix.Value.Id" onclick="setCourseDescription(this)" style="cursor:pointer; padding:3px;">@prefix.Value.Name (@prefix.Value.Season @prefix.Value.Year)</li>
+                }
+                else
+                {
+                    <li class="in-course" style="cursor:pointer; padding:3px;" title="You are already signed up for this course">@prefix.Value.Name (@prefix.Value.Season @prefix.Value.Year)</li>
+                }
+            }
+        }
+    </ul>
+</div>
+
+<div id="course-description" style="padding-top:15px;">
+
+</div>
+<div id="course-signup" style="visibility:collapse;">
+    @using (Html.BeginForm())
+{
+        @Html.HiddenFor(m => m.SelectedCourse, new { id = "selected-course" })
+            <input type="submit" name="submit" value="Sign up" />
+}
+</div>
+<div style="display:none;">
+    @foreach (Course course in Model.AllCourses)
+    {
+            List<string> coordinators = course.CourseUserRelationships
+                .Where(c => c.Role >= CourseRole.Coordinator)
+                .Select(c => c.User.FirstAndLastName)
+                .ToList();
+            if (coordinators.Count == 0)
+            {
+                coordinators.Add("None");
+            }
+       
+        <div id="course-@course.Id">
+            <h2>@course.Name (@course.Season @course.Year)</h2>
+            <h3>Coordinator(s):</h3> 
+            @string.Join("<br />", coordinators)
+            <h3>Description</h3>
+            @course.Description
+        </div>
+    }
+</div>

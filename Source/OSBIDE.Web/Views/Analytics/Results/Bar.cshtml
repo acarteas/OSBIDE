@@ -1,0 +1,106 @@
+﻿@model List<OSBIDE.Web.Models.Analytics.ProcedureDataItem>
+
+@using OSBIDE.Data.DomainObjects
+@using OSBIDE.Web.Helpers
+
+<script src="@Url.Content("~/Scripts/highcharts.js")"></script>
+<script src="@Url.Content("~/Scripts/exporting.js")"></script>
+
+<div class="row">
+    <div class="col-xs-1">
+    </div>
+    <div class="col-xs-2">
+        <select id="CategoryColumn" name="CategoryColumn" class="form-control">
+            @foreach (var e in Enum<ProcedureType>.Get())
+            {
+                var selected = e.Value == (int)CategoryColumn.Name ? "selected" : string.Empty;
+                <option value="@e.Value" @selected>@e.Text</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#CategoryColumn").change(function(){
+
+            $.getJSON("@Url.Content("~/Analytics/GetScoreFor")", {x:$(this).val()}, function (results) {
+
+                var chart = $("#container").highcharts();
+                chart.series[0].remove();
+                chart.xAxis[0].categories = [];
+                var scores = [];
+
+                $.each(results, function(key, value){
+                    chart.xAxis[0].categories.push(value.x);
+                    scores.push(value.y);
+                });
+
+                if (chart.xAxis[0].categories.length <= 5) {
+                    chart.addSeries({
+                        pointWidth: 50,
+                        color: "#7CB5EC",
+                        name: "EQ",
+                        data: scores
+                    });
+                }
+                else {
+                    chart.addSeries({
+                        color: "#7CB5EC",
+                        name: "EQ",
+                        data: scores
+                    });
+                }
+
+            });
+        });
+
+        Highcharts.setOptions({
+            lang: {
+                contextButtonTitle: "Export Commands"
+            }
+        });
+
+        $("#container").highcharts({
+            chart: {
+                type: "bar"
+            },
+            title: {
+                text: null
+            },
+            navigation: {
+                menuItemStyle: {
+                    padding: "5px",
+                    color: '#303030'
+                }
+            },
+            xAxis: {
+                categories: @Html.Raw(Model.Select(m=>m.Name).ToJson())
+                },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: "EQs"
+                }
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: "EQ",
+                data: @Model.Select(m=>m.Score).ToJson()
+                }]
+        });
+    });
+
+</script>

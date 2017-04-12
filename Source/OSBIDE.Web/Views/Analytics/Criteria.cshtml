@@ -1,0 +1,192 @@
+﻿@model OSBIDE.Data.DomainObjects.Criteria
+@using OSBIDE.Web.Models.Analytics
+
+@Styles.Render("~/Content/bootstrap.css")
+
+<section data-tab="Analytics" id="analytics" class="container-fluid">
+
+    @using (Html.BeginForm("Refine", "Analytics", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div data-wzstep="@WizardSteps.Criteria">
+
+            <div class="row">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-4">
+                    <h2>Enter Data Criteria</h2>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Date Range:</label>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.DateFrom, new { Value = Model.DateFrom.HasValue ? Model.DateFrom.Value.ToString("MM/dd/yyyy") : string.Empty, @class = "form-control", placeholder = "From" })
+                </div>
+                <div id="ad-hoc-date" class="col-xs-1 bootstrap-override">
+                    to
+                </div>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.DateTo, new { Value = Model.DateTo.HasValue ? Model.DateTo.Value.ToString("MM/dd/yyyy") : string.Empty, @class = "form-control", placeholder = "To" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Student ID:</label>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.StudentId, new { @class = "form-control", placeholder = "Any" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Name Contains:</label>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.NameToken, new { @class = "form-control", placeholder = "Any" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Gender:</label>
+                <div class="col-xs-2">
+                    @Html.DropDownListFor(m => m.GenderId, new SelectList(CriteriaLookups.Genders, "GenderId", "DisplayText"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Age Between:</label>
+                <div class="col-xs-2">
+                    @Html.DropDownListFor(m => m.AgeFrom, new SelectList(CriteriaLookups.AgeRange, "Age", "DisplayText"), new { @class = "form-control" })
+                </div>
+                <div id="ad-hoc-age" class="col-xs-1 bootstrap-override">
+                    to
+                </div>
+                <div class="col-xs-2">
+                    @Html.DropDownListFor(m => m.AgeTo, new SelectList(CriteriaLookups.AgeRange, "Age", "DisplayText"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Course:</label>
+                <div class="col-xs-4">
+                    @Html.DropDownListFor(m => m.CourseId, new SelectList(CriteriaLookups.Courses, "CourseId", "DisplayText"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <input id="rootUrl" type="hidden" value="@Url.Content("~")" />
+                <label class="col-xs-2 control-label">Deliverable:</label>
+                <div class="col-xs-2">
+                    <select class="form-control" id="Deliverable" name="Deliverable"><option>Any</option></select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Grade Range:</label>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.GradeFrom, new { @class = "form-control", placeholder = "Any (%)" })
+                </div>
+                <div id="ad-hoc-grade" class="col-xs-1 bootstrap-override">
+                    to
+                </div>
+                <div class="col-xs-2">
+                    @Html.TextBoxFor(m => m.GradeTo, new { @class = "form-control", placeholder = "Any (%)" })
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-xs-6">
+                </div>
+                <div class="col-xs-2 wizard">
+                    <a style="display:none" data-wzstep="@WizardSteps.Criteria">Prev</a>
+                    <a data-wzstep="@WizardSteps.Refine">Next</a>
+                </div>
+            </div>
+
+        </div>
+    }
+
+</section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            Criteria.WireupEventHandlers();
+        });
+
+        if (typeof (Criteria) == "undefined") {
+
+            var Criteria = {
+
+                Validate: function () {
+
+                    var name = $("input[name='NameToken']").val();
+                    if (name.length > name.replace(/<\/?[^>]+>/gi, "").length
+                        || $(".has-error").length > 0) {
+
+                        alert("Please enter proper input criteria in the red input areas.");
+                        return false;
+                    }
+                    return true;
+                },
+
+                WireupEventHandlers: function () {
+
+                    $("input[name='DateFrom']").datepicker({
+                        minDate: new Date("01/011/2010"),
+                        changeMonth: true,
+                        changeYear: true,
+                        onSelect: function () {
+                            $("input[name='DateFrom']").trigger("change");
+                        }
+                    });
+
+                    $("input[name='DateTo']").datepicker({
+                        minDate: new Date("01/011/2010"),
+                        changeMonth: true,
+                        changeYear: true,
+                        onSelect: function () {
+                            $("input[name='DateTo']").trigger("change");
+                        }
+                    });
+
+                    $("a[data-wzstep]").click(function (e) {
+
+                        e.stopPropagation();
+                        e.preventDefault();
+                        if (Criteria.Validate()) {
+
+                            $("form").submit();
+                        }
+                    });
+
+                    // validations
+                    $("input[name^='Date']").change(function () {
+                        var date_regex = /^((0?[1-9]|1[012])[- /.](0?[1-9]|[12][0-9]|3[01])[- /.](19|20)?[0-9]{2})*$/;
+                        if (date_regex.test($(this).val()) == false) {
+                            $(this).parent().addClass("has-error");
+                        }
+                        else {
+                            $(this).parent().removeClass("has-error");
+                        }
+                    });
+
+                    $("input[name^='Grade']").change(function () {
+                        var grade = parseFloat($(this).val());
+
+                        if ($.trim($(this).val()).length > 0 && (isNaN(grade) || grade < 0 || grade > 100)) {
+                            $(this).parent().addClass("has-error");
+                        }
+                        else {
+                            $(this).parent().removeClass("has-error");
+                        }
+                    });
+
+                    $("input[name='StudentId']").change(function () {
+                        var id = parseInt($(this).val());
+                        if ($(this).val().length > 0 && (isNaN(id) || id < 0)) {
+                            $(this).parent().addClass("has-error");
+                        }
+                        else {
+                            $(this).parent().removeClass("has-error");
+                        }
+                    });
+                }
+            };
+        }
+
+    </script>
+}

@@ -1,0 +1,405 @@
+﻿@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@using System.Text
+@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Library
+
+@model CourseDetailsViewModel
+@{
+    ViewBag.Title = Model.CurrentCourse.Name;
+    bool isCoordinator = Model.Coordinators.Contains(Model.CurrentUser);
+    int assignmentCounter = 0;
+}
+@section Scripts
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            @if(isCoordinator == true)
+            {
+            <text>
+            //create assignment dialog
+            $('#create-assignment').dialog({
+                autoOpen: false,
+                height: 300,
+                width: 500,
+                modal: true,
+                buttons: {
+                    "Create Assignment": function () {
+                        $("#create-assignment-form").submit();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                    allFields.val("").removeClass("ui-state-error");
+                }
+            });
+
+            //register the icon click
+            $("#create-assignment-link").click(function () {
+                $('#create-assignment').dialog("open");
+            });
+
+            //delete assignment dialog
+            $("#assignment-delete-dialog-confirm").dialog({
+                resizable: false,
+                autoOpen: false,
+                height: 180,
+                modal: true,
+                buttons: {
+                    "Delete Assignment": function () {
+
+                        //redirect
+                        var assignmentId = $("#assignment-delete-dialog-confirm").attr("data-id");
+                        var url = "@Url.Action("DeleteAssignment")";
+                        url += "/" + assignmentId;
+                        window.location.href = url;
+                    },
+
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            //listener for delete assignment
+            $(".delete-assignment-link").click(function (event) {
+                event.preventDefault();
+                $("#assignment-delete-dialog-confirm").attr("data-id", $(this).attr("data-id"));
+                $("#assignment-delete-dialog-confirm").dialog("option", "title", "Delete " + $(this).attr("data-name") + "?");
+                $("#assignment-delete-dialog-confirm").dialog("open");
+            });
+
+            //delete file dialog
+            $("#file-delete-dialog-confirm").dialog({
+                resizable: false,
+                autoOpen: false,
+                height: 200,
+                modal: true,
+                buttons: {
+                    "Delete File": function () {
+
+                        //redirect
+                        var url = $("#file-to-delete").attr("data-url");
+                        window.location.href = url;
+                    },
+
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            //listener for delete file
+            $(".delete-file-link").click(function (event) {
+                event.preventDefault();
+                $("#file-to-delete").attr("data-url", $(this).attr("href"));
+                $("#file-to-delete").text($(this).attr("data-name"));
+                //$("#file-delete-dialog-confirm").dialog("option", "title", "Delete " + $(this).attr("data-name") + "?");
+                $("#file-delete-dialog-confirm").dialog("open");
+            });
+
+            //upload assignment file dialog
+            $('#upload-assignment-files').dialog({
+                autoOpen: false,
+                height: 300,
+                width: 500,
+                modal: true,
+                buttons: {
+                    "Upload Files": function () {
+                        $("#upload-assignment-files-form").submit();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                    allFields.val("").removeClass("ui-state-error");
+                }
+            });
+
+            //register the icon click
+            $(".upload-assignment-file-link").click(function () {
+                event.preventDefault();
+                var assignmentId = $(this).attr('data-id');
+                var assignmentName = $(this).attr('data-name');
+                $('#upload-assignment-files-id').val(assignmentId);
+                $('#upload-assignment-files-name').text(assignmentName);
+                $("#upload-assignment-files").dialog("open");
+            });
+
+            //upload course file dialog
+            $('#upload-course-files').dialog({
+                autoOpen: false,
+                height: 300,
+                width: 500,
+                modal: true,
+                buttons: {
+                    "Upload Files": function () {
+                        $("#upload-course-files-form").submit();
+                    },
+                    Cancel: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                close: function () {
+                    allFields.val("").removeClass("ui-state-error");
+                }
+            });
+
+            //register the icon click
+            $("#upload-course-file-link").click(function () {
+                event.preventDefault();
+                $("#upload-course-files").dialog("open");
+            });
+
+            </text>
+            }
+
+            //register course select dropdown
+            $('#select-course-dropdown').change(function () {
+                $('#select-course-form').submit();
+            });
+        });
+    </script>
+
+    <style type="text/css">
+
+        article
+        {
+            padding-bottom:15px;
+        }
+
+        .assignments-table {
+        }
+
+            .assignments-table td {
+                padding: 7px;
+            }
+
+            .assignments-table .alt-row {
+                background: #F2F6FF;
+            }
+
+
+            .assignments-table th {
+                background: #BBD3FF;
+                padding: 5px;
+            }
+
+        table.course-select {
+        }
+
+            table.course-select td {
+                padding: 4px;
+                vertical-align: middle;
+            }
+
+        #create-assignment-button {
+            display: none;
+        }
+
+        #upload-assignment-files-submit {
+            display: none;
+        }
+
+        #upload-course-files-submit {
+            display: none;
+        }
+    </style>
+}
+<section data-tab="Courses">
+    <h1>My Courses</h1>
+    <div>
+        @using (Html.BeginForm("Details", "Course", FormMethod.Post, new { id = "select-course-form" }))
+        {
+            <table class="course-select">
+                <tr>
+                    <td>
+                        select a different course:
+                    </td>
+                    <td>
+                        <select id="select-course-dropdown" name="id">
+                            @foreach (CourseUserRelationship relationship in Model.CurrentUser.CourseUserRelationships.OrderBy(c => c.Course.Name))
+                            {
+                                string selected = "";
+                                if (relationship.CourseId == Model.CurrentCourse.Id)
+                                {
+                                    selected = " selected=\"selected\" ";
+                                }
+                                <option value="@relationship.CourseId" @selected>@relationship.Course.Name</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sign up for a new course", "Search", "Course")
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+    <br />
+    <h2>
+        Details for @Model.CurrentCourse.Name
+        @if (Model.CurrentCourse.Id != Model.CurrentUser.DefaultCourseId)
+        {
+            @Html.ActionLink("(set as default)", "MakeDefault", new { id = Model.CurrentCourse.Id })
+        }
+    </h2>
+    <article>
+        <h1>
+            @if (isCoordinator == true)
+            {
+                <img src="~/Content/icons/add_up.png" alt="create assignment" title="create assignment" id="create-assignment-link" />
+            }
+            Assignments
+        </h1>
+        @if (Model.Assignments.Count < 1)
+        {
+            @:There are no assignments for this course.
+    }
+        else
+        {
+            <table class="assignments-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Release Date</th>
+                        <th>Due Date</th>
+                        <th>Files</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Assignment assignment in Model.Assignments)
+                    {
+                        string altStyle = "";
+                        assignmentCounter++;
+                        if (assignmentCounter % 2 == 0)
+                        {
+                            altStyle = "alt-row";
+                        }
+                        <tr class="@altStyle">
+                            <td>
+                                @if (isCoordinator == true)
+                                {
+                                    <a class="delete-assignment-link" data-id="@assignment.Id" data-name="@assignment.Name" href="@Url.Action("DeleteAssignment", new { id = assignment.Id })"><img src="~/Content/icons/delete_up.png" title="delete assignment" alt="delete assignment" /></a>
+                                }
+                            </td>
+                            <td>
+                                @if (isCoordinator == true)
+                                {
+                                    @Html.ActionLink(assignment.Name, "Index", "Assignment", new { assignmentId = assignment.Id }, new { })
+                                }
+                                else
+                                {
+                                    @assignment.Name
+                                }
+                            </td>
+                            <td>
+                                <time class="utc-time"
+                                      datetime="@Helpers.DateAsUnixTime(assignment.ReleaseDate)"
+                                      data-original-date="@Helpers.RawDate(assignment.ReleaseDate)"
+                                      data-date-format="MM/DD/YYYY hh:mm A">
+                                    @assignment.ReleaseDate.ToString("MM/dd @ hh:mmtt") (UTC)
+                                </time>
+                            </td>
+                            <td>
+                                <time class="utc-time"
+                                      datetime="@Helpers.DateAsUnixTime(assignment.DueTime)"
+                                      data-original-date="@Helpers.RawDate(assignment.DueTime)"
+                                      data-date-format="MM/DD/YYYY hh:mm A">
+                                    @assignment.DueTime.ToString("MM/dd @ hh:mmtt") (UTC)
+                                </time>
+                            </td>
+                            <td>
+                                @if (isCoordinator == true)
+                                {
+                                    <a class="upload-assignment-file-link" data-id="@assignment.Id" data-name="@assignment.Name" href="@Url.Action("UploadAssignmentFile", new { id = assignment.Id })"><img src="~/Content/icons/add_up.png" alt="add files" title="add files" />Add File</a>
+                                }
+                                <ul>
+                                    @foreach (string file in Model.AssignmentFiles[assignment.Id])
+                                    {
+                                        <li>
+                                            @if (isCoordinator == true)
+                                            {
+                                                <a class="delete-file-link" href="@Url.Action("DeleteAssignmentFile", "Course", new { id = assignment.Id, file = file })" data-name="@file"><img src="~/Content/icons/delete_up.png" title="Delete file" alt="Delete file" /></a>
+                                            }
+                                            @Html.ActionLink(file, "GetAssignmentAttachment", "File", new { assignmentId = assignment.Id, file = file }, new { })
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </article>
+    <article>
+        <h1>
+            @if (Model.Coordinators.Contains(Model.CurrentUser) == true)
+            {
+                <a id="upload-course-file-link" href="@Url.Action("UploadCourseFile", "Course", new { id = Model.CurrentCourse.Id })"><img src="~/Content/icons/add_up.png" alt="add file" title="add file" /></a>
+            }
+            Course Documents
+        </h1>
+        @if (Model.CourseDocuments.Count < 1)
+        {
+            @:This course has no attached documents.
+    }
+        else
+        {
+            <ul>
+                @foreach (string file in @Model.CourseDocuments)
+                {
+                    <li>
+                        @if (isCoordinator == true)
+                        {
+                            <a class="delete-file-link" href="@Url.Action("DeleteCourseFile", "Course", new { id = Model.CurrentCourse.Id, file = file })" data-name="@file"><img src="~/Content/icons/delete_up.png" title="Delete file" alt="Delete file" /></a>
+                        }
+                        @Html.ActionLink(file, "GetCourseDocument", "File", new { courseId = Model.CurrentCourse.Id, file = file }, new { })
+                    </li>
+                }
+            </ul>
+        }
+    </article>
+    <article>
+        <h1>Registered Users (@Model.CurrentCourse.CourseUserRelationships.Count)</h1>
+        @if (Model.CurrentCourse.CourseUserRelationships.Count != 0)
+        {
+            <ul>
+                @foreach (CourseUserRelationship cur in Model.CurrentCourse.CourseUserRelationships.OrderBy(cur => cur.User.LastName).ToList())
+                {
+                    <li style="clear:both; padding: 5px;">
+                        <img src="@Url.Action("Picture", "Profile", new { id = cur.UserId, size = 32 })" title="profile image" alt="profile image" style="float:left;" />
+                        <div style="padding-left:40px;">
+                            @Html.ActionLink(cur.User.FirstAndLastName, "Index", "Profile", new { id = cur.UserId, component = OsbideVsComponent.UserProfile }, new { })
+                        </div>
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            @:There aren't any users in this course.
+    }
+    </article>
+    @if (isCoordinator == true)
+    {
+        <div id="assignment-delete-dialog-confirm" title="Delete this assignment?">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This assignment will be permanently deleted and cannot be recovered. Are you sure?</p>
+        </div>
+        <div id="file-delete-dialog-confirm" title="Delete this file?">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>The file &quot;<span id="file-to-delete">some file</span>&quot; will be permanently deleted and cannot be recovered. Are you sure?</p>
+        </div>
+        @Html.Partial("CreateAssignment", new Assignment() { CourseId = Model.CurrentCourse.Id })
+        @Html.Partial("UploadAssignmentFile", new Assignment() { CourseId = Model.CurrentCourse.Id })
+        @Html.Partial("UploadCourseFile", Model.CurrentCourse)
+    }
+</section>

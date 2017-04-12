@@ -1,0 +1,66 @@
+﻿@using OSBIDE.Library
+@{
+    bool includeHeader = true;
+    if(ViewBag.IncludeHeader != null)
+    {
+        includeHeader = ViewBag.IncludeHeader;
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - OSBIDE</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/moment")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/osbide")
+        @RenderSection("scripts", required: false)
+    </head>
+    <body>
+        @if(includeHeader == true)
+        {
+        <header>
+            <h1>OSBIDE</h1>
+            <ul>
+                <li>@Html.ActionLink("Activity Feed", "Index", "Feed", new { component = OsbideVsComponent.FeedOverview }, new { })</li>
+                <li>@Html.ActionLink("Chat", "Index", "Chat", new { component = OsbideVsComponent.Chat }, new { })</li>
+                <li>@Html.ActionLink("My Profile", "Index", "Profile", new { component = OsbideVsComponent.UserProfile }, new { })</li>
+            </ul>
+            <!--
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("your logo here", "Index", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Log Out", "Logout", "Account")</li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+                -->
+        </header>
+        }
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer style="clear:both;">
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.UtcNow.Year - Washington State University</p>
+                </div>
+            </div>
+        </footer>
+        
+    </body>
+</html>

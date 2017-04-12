@@ -1,0 +1,293 @@
+﻿@using OSBIDE.Library
+@using OSBIDE.Library.Models
+@using OSBIDE.Web.Models.ViewModels
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@model OSBIDE.Web.Models.ViewModels.EditProfileViewModel
+@{
+    ViewBag.Title = "Edit Your Profile";
+}
+<h1>@Model.User.FirstAndLastName</h1>
+@Html.ValidationSummary(true, "Account update was unsuccessful.")
+<div id="accordion-options">
+    <h3>Profile Picture</h3>
+    <section>
+        @using (Html.BeginForm("Picture", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <img src="@Url.Action("Picture", "Profile", new { id = Model.User.Id })" title="profile image" alt="profile image" />
+            <p>Choose a profile picture...</p>
+            <input type="file" name="file" />
+            
+            <input type="hidden" name="LastActivePane" value="0" />
+            <input type="submit" name="upload" value="Upload" />
+            <input type="submit" name="reset" value="Reset Picture" />
+            <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+        }
+    </section>
+
+    <h3>Basic Information</h3>
+    <section id="basic-information">
+        @using (Html.BeginForm())
+        {
+            if (@Model.UpdateBasicSettingsMessage != null)
+            {
+            <div class="notice">
+                <h3>@Model.UpdateBasicSettingsMessage</h3>
+            </div>
+            }
+            @Html.HiddenFor(m => m.User.Email)
+            <table class="form-entry">
+                <tr>
+                    <th>@Html.LabelFor(m => m.User.FirstName):</th>
+                    <td>@Html.TextBoxFor(m => m.User.FirstName)</td>
+                    <td>@Html.ValidationMessageFor(m => m.User.FirstName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(m => m.User.LastName):</th>
+                    <td>@Html.TextBoxFor(m => m.User.LastName)</td>
+                    <td>@Html.ValidationMessageFor(m => m.User.LastName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(m => m.User.SchoolId):</th>
+                    <td>@Html.DropDownListFor(m => m.User.SchoolId, new SelectList(ViewBag.Schools, "Id", "Name"), String.Empty)</td>
+                    <td>@Html.ValidationMessageFor(m => m.User.SchoolId)</td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(m => m.User.InstitutionId):</th>
+                    <td>@Html.TextBoxFor(m => m.User.InstitutionId)</td>
+                    <td>@Html.ValidationMessageFor(m => m.User.InstitutionId)</td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <th style="vertical-align: top">@Html.LabelFor(m => m.User.GenderValue): (optional)
+                <img id="gender-tooltip" src="~/Content/icons/help.png" alt="more information about gender" title="gender is optional" />
+                    </th>
+                    <td>
+                        @Html.RadioButtonFor(m => m.User.Gender, Gender.Unknown, new { @checked = "checked", id = "gender-other" })
+                        <label for="gender-other">Other / Unknown / Not specified</label>
+                        <br />
+                        @Html.RadioButtonFor(m => m.User.Gender, Gender.Male, new { id = "gender-male" })
+                        <label for="gender-male">Male</label>
+                        <br />
+                        @Html.RadioButtonFor(m => m.User.Gender, Gender.Female, new { id = "gender-female" })
+                        <label for="gender-female">Female</label>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+            <input type="hidden" name="LastActivePane" value="1" />
+            <input type="submit" name="updateBasic" value="Update Basic Information" />
+            <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+        }
+    </section>
+
+    <h3>My Courses</h3>
+    <section>
+        @if (@Model.RemoveCourseMessage != null)
+            {
+            <div class="notice">
+                <h3>@Model.RemoveCourseMessage</h3>
+            </div>
+            }
+        @if (Model.User.CourseUserRelationships.Count > 0)
+        {
+            @:You are currently enrolled in the following courses:
+            <table style="margin: 7px;">
+                @foreach (CourseUserRelationship course in Model.User.CourseUserRelationships)
+                {
+                    <tr>
+                        <td style="padding-right: 7px;">
+                            <a data-course="@course.Course.Name" data-id="@course.CourseId" href="~/Profile/RemoveCourse?courseId=@course.CourseId" class="leave-course-link"><img src="~/Content/icons/delete_up.png" alt="leave course" title="leave this course" /></a>
+                        </td>
+                        <td>
+                            @Html.ActionLink(course.Course.Name, "Details", "Course", new { id = course.CourseId,  component = OsbideVsComponent.GenericComponent}, new { }) &mdash; @course.Course.Season @course.Course.Year (@course.Role.ToString())
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            @:You are not enrolled in any courses.
+        }
+        <ul>
+            <li>@Html.ActionLink("Find additional courses", "Search", "Course", new { }, new { component = OsbideVsComponent.GenericComponent })</li>
+            @if (Model.User.Role == SystemRole.Instructor)
+            {
+                <li>@Html.ActionLink("Create a new course", "Create", "Course", new { }, new { component = OsbideVsComponent.GenericComponent })</li>
+            }
+        </ul>
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id ="RemoveCourseForm" }))
+        {
+            <input type="hidden" name="CourseToRemove" id="CourseId" value="-1" />
+        }
+        <div id="leave-confirm" title="Leave ???" style="display:none;">
+            <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>
+                Are you sure that you want to leave <span id="leave-confirm-course-name"> the course</span>?
+            </p>
+        </div>
+    </section>
+
+    <h3>Email Address</h3>
+    <section>
+        @using (Html.BeginForm())
+        {
+            <p>
+                You may change your email address as long as it is not in use by another account.  Note that in order to change your
+            email address, you must verify your password.
+            </p>
+            if (@Model.UpdateEmailSuccessMessage != null)
+            {
+            <div class="notice">
+                <h3>@Model.UpdateEmailSuccessMessage</h3>
+            </div>
+            }
+            <table class="form-entry">
+                <tr>
+                    <th>Current Email Address:</th>
+                    <td colspan="2">@Model.User.Email</td>
+                </tr>
+                <tr>
+                    <th>New Email Address:</th>
+                    <td>@Html.TextBoxFor(m => m.NewEmail)</td>
+                    <td>@Html.ValidationMessageFor(m => m.NewEmail)</td>
+                </tr>
+                <tr>
+                    <th>Confirm Email Address:</th>
+                    <td>@Html.TextBoxFor(m => m.NewEmailConfirm)</td>
+                    <td>@Html.ValidationMessageFor(m => m.NewEmailConfirm)</td>
+                </tr>
+                <tr>
+                    <th>Verify Password:</th>
+                    <td>@Html.PasswordFor(m => m.OldPassword)</td>
+                    <td>@Html.ValidationMessageFor(m => m.OldPassword)</td>
+                </tr>
+            </table>
+            <input type="hidden" name="LastActivePane" value="3" />
+            <input type="submit" name="updateEmail" value="Update Email" />
+            <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+        }
+    </section>
+
+    <h3>Email Preferences</h3>
+    <section>
+        @using (Html.BeginForm())
+        {
+            if (@Model.UpdateEmailSettingsMessage != null)
+            {
+            <div class="notice">
+                <h3>@Model.UpdateEmailSettingsMessage</h3>
+            </div>
+            }
+            <table class="form-entry">
+                <tr>
+                    <th>Receive email notifications from posts that I'm involved with:</th>
+                    <td>@Html.CheckBoxFor(m => m.ReceiveEmailNotificationsForPosts)</td>
+                </tr>
+                <tr>
+                    <th>Receive email notifications when someone asks for help:</th>
+                    <td>@Html.CheckBoxFor(m => m.ReceiveEmailsOnNewAskForHelp)</td>
+                </tr>
+                <tr>
+                    <th>Receive email notifications when someone posts a general feed comment:</th>
+                    <td>@Html.CheckBoxFor(m => m.ReceiveEmailsOnFeedPost)</td>
+                </tr>
+            </table>
+            <input type="hidden" name="LastActivePane" value="4" />
+            <input type="submit" name="changeEmailNotifications" value="Update Settings" />
+            <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+        }
+    </section>
+
+    <h3>Password</h3>
+    <section>
+        @using (Html.BeginForm())
+        {
+            if (@Model.UpdatePasswordSuccessMessage != null)
+            {
+            <div class="notice">
+                <h3>@Model.UpdatePasswordSuccessMessage</h3>
+            </div>
+            }
+            <table class="form-entry">
+                <tr>
+                    <th>Current Password:</th>
+                    <td>@Html.PasswordFor(m => m.OldPassword)</td>
+                    <td>@Html.ValidationMessageFor(m => m.OldPassword)</td>
+                </tr>
+                <tr>
+                    <th>New Password:</th>
+                    <td>@Html.PasswordFor(m => m.NewPassword)</td>
+                    <td>@Html.ValidationMessageFor(m => m.NewPassword)</td>
+                </tr>
+                <tr>
+                    <th>Confirm New Password:</th>
+                    <td>@Html.PasswordFor(m => m.NewPasswordConfirm)</td>
+                    <td>@Html.ValidationMessageFor(m => m.NewPasswordConfirm)</td>
+                </tr>
+            </table>
+            <input type="hidden" name="LastActivePane" value="5" />
+            <input type="submit" name="updatePassword" value="Update Password" />
+            <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+        }
+    </section>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/Account.Create.js")
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#accordion-options").accordion({
+                heightStyle: "content",
+                active: @Model.LastActivePane
+                });
+
+            $('.leave-course-link').click(function(event)
+            {
+                var course = $(this).attr('data-course');
+                var courseId = $(this).attr('data-id');
+                $('#leave-confirm').attr('title', 'Leave ' + course);
+                $('#leave-confirm-course-name').html(course);
+
+
+                event.preventDefault();
+                $('#leave-confirm').dialog({
+                    resizable: false,
+                    height:200,
+                    modal:true,
+                    show: {
+                        effect: "fade",
+                        duration: 300
+                    },
+                    hide: {
+                        effect: "fade",
+                        duration: 300
+                    },
+                    buttons:{
+                        "Yes": function() {
+                            $('#CourseId').val(courseId);
+                            $('#RemoveCourseForm').submit();
+                        },
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+    <style type="text/css">
+        div.ui-tooltip {
+            max-width: 400px;
+            text-align: justify;
+            padding: 6px;
+        }
+    </style>
+}
+
+
+

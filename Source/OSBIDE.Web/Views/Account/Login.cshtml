@@ -1,0 +1,31 @@
+﻿@model OSBIDE.Web.Models.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login to OSBIDE";
+    ViewBag.IncludeHeader = false;
+}
+
+<h1>Login</h1>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+    <table class="form-entry">
+        <tr>
+            <th>Email:</th>
+            <td>@Html.TextBoxFor(m => m.UserName, new {tabindex = "1" })</td>
+            <td class="small-text">@Html.ActionLink("(Forgot your email?)", "ForgotEmail")</td>
+        </tr>
+        <tr>
+            <th>Password:</th>
+            <td>@Html.PasswordFor(m => m.Password, new {tabindex = "2" })</td>
+            <td class="small-text">@Html.ActionLink("(Forgot your password?)", "ForgotPassword")</td>
+        </tr>
+    </table>
+    @Html.HiddenFor(m => m.ReturnUrl)
+    <input type="submit" value="Log in" tabindex="3" />
+    <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+    @Html.ActionLink("Register", "Create") @:if you don't have an account.
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

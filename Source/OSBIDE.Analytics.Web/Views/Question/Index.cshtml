@@ -1,0 +1,22 @@
+﻿@using OSBIDE.Analytics.Library.Models
+@model QuestionCoding
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+}
+
+<h1>Thanks for helping out!</h1>
+@Html.ValidationSummary(true, "Bad data detected!")
+@using (Html.BeginForm())
+{
+    <text>Before we begin, please enter your WSU Student ID:</text>
+    @Html.TextBoxFor(m => m.AuthorStudentId)
+    @Html.ValidationMessageFor(m => m.AuthorStudentId)
+    <br />
+    <button type="submit">Let's Go!</button>
+}

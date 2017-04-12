@@ -1,0 +1,105 @@
+﻿@model OSBIDE.Web.Models.ViewModels.BuildDiffViewModel
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@using OSBIDE.Library.Models
+@using OSBIDE.Web.Models.ViewModels
+@using System.IO
+@using System.Web
+@{
+    Layout = null;
+}
+<h2>Viewing A student's 
+    build of &quot;@Path.GetFileNameWithoutExtension(Model.OriginalBuild.SolutionName)&quot;
+    on 
+    <time 
+                class="utc-time"
+                datetime="@Helpers.DateAsUnixTime(Model.OriginalBuild.EventLog.DateReceived)" 
+                data-original-date="@Helpers.RawDate(Model.OriginalBuild.EventLog.DateReceived)" 
+                data-date-format="MM/DD/YYYY hh:mm A">
+        @Model.OriginalBuild.EventLog.DateReceived.ToString("MM/dd @ hh:mmtt") (UTC)
+    </time>
+
+</h2>
+<ul id="diff-files">
+    @foreach (BuildDocument doc in Model.OriginalBuild.Documents.OrderBy(d => d.Document.FileName).ToList())
+    {
+        string style = "diff-files-not-active";
+        string fileName = Path.GetFileName(doc.Document.FileName);
+        if (Model.ActiveFileId == doc.DocumentId)
+        {
+            style = "diff-files-active";
+        }
+        <li data-id="@doc.DocumentId" class="diff-files-item @style">
+            <a href="@Url.Action("diff", new { id = Model.OriginalBuild.EventLogId, fileToDiff = doc.DocumentId })">@fileName</a>
+            @if (Model.DocumentErrors.Where(d => d.FileName.ToLower() == fileName.ToLower()).Count() > 0)
+            {
+                @:*   
+        }
+        </li>
+    }
+</ul>
+@foreach (BuildDocument doc in Model.OriginalBuild.Documents.OrderBy(d => d.Document.FileName).ToList())
+{
+    CodeDocument originalDoc = doc.Document;
+    CodeDocument modifiedDoc = Model.ModifiedBuild.Documents.Where(d => d.Document.FileName == doc.Document.FileName).Select(d => d.Document).FirstOrDefault();
+    List<BuildDiffLine> originalLines = Model.GetOriginalDocumentLines(originalDoc.FileName);
+    List<BuildDiffLine> modifiedLines = Model.GetModifiedDocumentLines(originalDoc.FileName);
+    string tableHiddenStyle = "display: none;";
+    string fileName = Path.GetFileName(doc.Document.FileName);
+    if (Model.ActiveFileId == doc.DocumentId)
+    {
+        tableHiddenStyle = "";
+    }
+    AlterDiffContent(originalLines, "deleted");
+    AlterDiffContent(modifiedLines, "added");
+    <table class="diff-table" data-id="@originalDoc.Id" style="@tableHiddenStyle">
+        <thead>
+            <tr>
+                <th class="diff-table-original-header">Original (@Model.OriginalBuild.EventLog.DateReceived)</th>
+                <th class="diff-table-modified-header">Modified (@Model.ModifiedBuild.EventLog.DateReceived)</th>
+                <tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="diff-table-original-content">
+                    <pre><code class="cpp">@Html.Raw(string.Join("\n", originalLines.Select(l => l.Content)))</code></pre>
+                    @if (originalLines.Count == 0)
+                    {
+                        @:This file did not have any errors.
+                        }
+                </td>
+                <td class="diff-table-modified-content">
+                    <pre><code class="cpp">@Html.Raw(string.Join("\n", modifiedLines.Select(l => l.Content)))</code></pre>
+                    @if (modifiedLines.Count == 0)
+                    {
+                        @:The original and modified file are identical.
+                        }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+<ul class="errors">
+    @foreach (DocumentError error in Model.DocumentErrors)
+    {
+        <li data-id="@error.LineNumber">[@error.LineNumber] @error.ErrorMessage</li>
+    }
+</ul>
+@functions
+{
+    public void AlterDiffContent(List<BuildDiffLine> lines, string modifiedClass)
+    {
+        for (int i = 0; i < lines.Count; i++)
+        {
+            lines[i].Content = HttpUtility.HtmlEncode(lines[i].Content).Replace("\t", "&nbsp;&nbsp;&nbsp;");
+            string modifiedContent = lines[i].Content;
+            string lineNumber = string.Format(@"<span class=""errortype-{0}"" data-id=""{1}"">[{2}]</span>", lines[i].Error.Source.ToString(), lines[i].Error.LineNumber, lines[i].Error.LineNumber);
+            modifiedContent = string.Format("{0,-50}{1}", lineNumber, modifiedContent);
+            if (lines[i].Content.Contains(BuildDiffViewModel.DIFF_ESCAPE) == true)
+            {
+                modifiedContent = string.Format(@"<span class=""{0}"">{1}</span>", modifiedClass, modifiedContent.Replace(BuildDiffViewModel.DIFF_ESCAPE, "").Replace("\n", ""));
+            }
+            lines[i].Content = modifiedContent;
+        }
+    }
+}

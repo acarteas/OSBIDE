@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+@model OSBIDE.Library.Models.OsbideUser
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OSBIDE Setup</title>
+</head>
+<body>
+    <div>
+        This page will set up OSBIDE on a new server.  To begin, click the &quot;begin&quot; button below.
+        On success, you will be redirected to the OSBIDE home page.
+        @using (Html.BeginForm())
+        {
+            <input type="submit" value="Begin" />
+        }
+    </div>
+</body>
+</html>

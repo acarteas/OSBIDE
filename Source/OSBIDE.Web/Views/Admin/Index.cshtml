@@ -1,0 +1,170 @@
+﻿@model OSBIDE.Web.Models.AdminDataImport
+
+@using OSBIDE.Web.Models.Analytics
+@using OSBIDE.Data.DomainObjects
+
+@Styles.Render("~/Content/bootstrap.css")
+
+<section data-tab="Admin">
+
+    @{
+        ViewBag.Title = "Admin Controls";
+        var notice = ViewBag.UploadResult != null
+                   ? (ViewBag.UploadResult == true ? "Roster import complete." : ViewBag.ErrorMessage)
+                   : string.Empty;
+    }
+
+    @if (notice.Length > 0)
+    {
+        <div class="notice row">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-10">
+                @notice
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="field-validation-error">@ViewBag.ErrorMessage</div>
+    }
+
+    @using (Html.BeginForm("UploadRoster", "Admin", new { }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+    {
+        <div class="row">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-4">
+                <h2>Upload Files</h2>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <p>
+                    By using this form, you can automatically set up subscriptions for students, instructors, and TAs in a given section.
+                    To do so, simply upload a two-column CSV file that lists student ID numbers and the desired section number.
+                </p>
+                <p>
+                    Grade or class surveys xlsx files can also be uploaded using this form.
+                </p>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <input type="file" id="file" name="file" />
+                <div id="fileMsg" class="field-validation-error"></div>
+            </div>
+        </div>
+        <div class="form-group context-section">
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Schema:</label>
+                <div class="col-xs-3">
+                    <select id="Schema" name="Schema" class="form-control">
+                        @foreach (var e in Enum<FileUploadSchema>.Get())
+                        {
+                            var selected = e.Value == (int)FileUploadSchema.Grade ? "selected" : string.Empty;
+                            <option value="@e.Value" @selected>@e.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <label class="col-xs-2 control-label">Course:</label>
+                <div class="col-xs-3">
+                    @Html.DropDownListFor(m => m.CourseId, new SelectList(CriteriaLookups.Courses, "CourseId", "DisplayText"), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <input id="rootUrl" type="hidden" value="@Url.Content("~")" />
+                <label class="col-xs-2 control-label">Deliverable:</label>
+                <div class="col-xs-3">
+                    <select class="form-control" id="Deliverable" name="Deliverable"><option>Any</option></select>
+                </div>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <input id="upload" type="submit" value="Upload" disabled="disabled" />
+            </div>
+        </div>
+    }
+
+</section>
+
+@*"self-contained" doc utils*@
+<section data-type="doc-utils">
+
+    <div class="row">
+        <div class="col-xs-2">
+        </div>
+        <div class="col-xs-4">
+            <h2>Data Analytics Utils</h2>
+        </div>
+    </div>
+    <div class="row">
+        <span class="col-xs-2"></span>
+        <div class="col-xs-8">
+            <ul>
+                <li>
+                    <a class="row" href="@Url.Content("~/Analytics/RunDocUtils")">Run Doc Util</a>
+                    <p>
+                        Click on this command to perform precalculation on
+                        NumberOfInserted,NumberOfModified,NumberOfDeleted,ModifiedLines
+                        data fields in OSBIDE.dbo.BuildDocuments table
+                        before running Watwin algorithm
+                    </p>
+                </li>
+                <li>
+                    <a class="row" href="@Url.Content("~/DataVisualization/ProcessAzureTableStorage")">Process Azure Table Storage</a>
+                    <p>
+                        Click on this command to import passive social events from
+                        Azure storage table to OSBIDE.dbo.PassiveSocialEvents table
+                        before running data visualization with the latest passive social events
+                    </p>
+                </li>
+                <li>
+                    <a class="row" href="@Url.Content("~/DataVisualization/UpdateActiveSocialEvents")">Update Active Social Events</a>
+                    <p>
+                        Click on this command to update ActiveSocialEvents table with the latest social events
+                        including precalculated two-letter event code
+                        before running data visualization
+                    </p>
+                </li>
+            </ul>
+            <div class="row">
+                <span class="col-xs-1"></span><img data-type="spinner" src="@Url.Content("~/Content/icons/loading.gif")" width="50" height="50" />
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("img[data-type='spinner']").hide();
+
+        $("section[data-type='doc-utils'] a").click(function (e) {
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            $("section[data-type='doc-utils'] a").addClass("disabled").prop("disabled", true);
+            $("img[data-type='spinner']").show();
+
+            $.getJSON($(this).attr("href"), function () {
+
+                $("section[data-type='doc-utils'] a").removeClass("disabled").prop("disabled", false);
+                $("img[data-type='spinner']").hide();
+            });
+        })
+    });
+
+    </script>
+
+</section>

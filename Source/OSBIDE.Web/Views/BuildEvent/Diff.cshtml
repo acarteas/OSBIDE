@@ -1,0 +1,221 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models.ViewModels
+@model BuildDiffViewModel
+@{
+    ViewBag.Title = "Diff";
+    BuildEvent original = ViewBag.OriginalLog;
+    BuildEvent next = ViewBag.NextLog;
+    int previousLogId = ViewBag.PreviousLogId;
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        parseRawContent();
+        
+    });
+
+    function nextButtonClick(e) {
+        e.preventDefault();
+        $.ajax(
+            {
+                url: "@Url.Action("GetNextDiffId")",
+                data: { id: "@original.EventLogId", secondLogId: "@next.EventLogId" },
+                dataType: "html",
+                type: "GET",
+                success: getDiffSuccess
+            }
+            );
+    }
+
+    function getDiffSuccess(html) {
+    }
+
+    function parseRawContent() {
+
+        //attach event listeners
+        $(".diff-files-item").each(function () {
+            $(this).click(function (e) {
+
+                var fileName = $.trim($(this).text());
+                var docId = $(this).attr("data-id");
+
+                //reset tab CSS for all tabs
+                $(".diff-files-item").each(function () {
+                    $(this).removeClass("diff-files-active");
+                    $(this).addClass("diff-files-not-active");
+                });
+
+                //activate the selected tab
+                $(this).removeClass("diff-files-not-active");
+                $(this).addClass("diff-files-active");
+
+                $(".diff-table").each(function () {
+                    if ($(this).attr("data-id") != docId) {
+                        $(this).css("display", "none");
+                    }
+                    else {
+                        $(this).css("display", "");
+                    }
+                }
+                );
+                
+                e.preventDefault();
+            });
+        });
+
+        //getContent($(".diff-file-name").first().text());
+    }
+</script>
+<style type="text/css">
+    #diff-raw-content {
+        display: none;
+    }
+
+    #diff-files {
+        list-style: none;
+        margin: 0;
+        padding: 2px 10px 0px 10px;
+        border-bottom: 2px solid #074974;
+        margin-top: 7px;
+    }
+
+    .diff-files-item {
+        display: inline;
+        padding: 3px 15px 1px 15px;
+        border-top: 2px solid #074974;
+        border-left: 2px solid #074974;
+        border-right: 2px solid #074974;
+        background: #DFDFDF;
+        margin-right: 5px;
+    }
+
+        .diff-files-item a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    .diff-files-not-active a {
+        color: #2D2D2D;
+    }
+
+    .diff-files-active {
+        border-bottom: 3px solid white;
+        background: white;
+    }
+
+        .diff-files-active a {
+            font-weight: bold;
+        }
+
+    .diff-table {
+        margin-top: 10px;
+        border-collapse: collapse;
+        border: 1px solid black;
+        width: 90%;
+    }
+
+        .diff-table th, .diff-table td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+    .diff-table-original-header {
+        width: 50%;
+    }
+
+    .diff-table-modified-header {
+        width: 50%;
+    }
+
+    .deleted {
+        background-color: #FFC9C9;
+    }
+
+    .added {
+        background-color: #E0FFE0;
+    }
+
+    .button-list {
+        list-style: none;
+        margin-top: 8px;
+        margin-bottom: 8px;
+    }
+
+        .button-list a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .button-list li {
+            display: inline;
+            background: #EFEFEF;
+            padding: 2px 6px 2px 6px;
+            border-top: 1px solid #CCCCCC;
+            border-right: 1px solid #333333;
+            border-bottom: 1px solid #333333;
+            border-left: 1px solid #CCCCCC;
+            margin-right: 5px;
+        }
+
+    .button-disabled {
+        color: #CCCCCC;
+    }
+
+    .errors {
+        clear:both;
+    }
+
+    .errortype-Build {
+        background: #aed7ff;
+    }
+
+    .errortype-Debug {
+        background: #aed7ff;
+    }
+
+</style>
+<div id="diff-content">
+    @Html.Partial("GetDiff", Model)
+</div>
+@using (Html.BeginForm("Diff", "BuildEvent", FormMethod.Get))
+{
+    string previousButtonStyle = "button-enabled";
+    string nextButtonStyle = "button-enabled";
+    if (previousLogId == -1)
+    {
+        previousButtonStyle = "button-disabled";
+    }
+    if (next.EventLogId == -1)
+    {
+        nextButtonStyle = "button-disabled";
+    }
+    <ul class="button-list">
+        <li class="@previousButtonStyle">
+            @if (previousLogId != -1)
+            {
+                @Html.ActionLink("Previous Build", "Diff", new { id = previousLogId, direction = "previous" })
+            }
+            else
+            {
+                @:Previous Build
+            }
+        </li>
+        <li class="@nextButtonStyle">
+            @if (next.EventLogId != -1)
+            {
+                @Html.ActionLink("Next Build", "Diff", new { id = next.EventLogId, direction = "next" })
+            }
+            else
+            {
+                @:Next Build
+            }
+        </li>
+    </ul>
+}
+@Html.Partial("_Comments", original.EventLog)
+
+@section Scripts {
+    @Scripts.Render("~/bundles/highlight")
+    @Styles.Render("~/Content/css/highlight")
+}
+<script>hljs.initHighlightingOnLoad();</script>

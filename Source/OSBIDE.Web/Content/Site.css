@@ -1,0 +1,777 @@
+﻿a {
+    text-decoration: none;
+    color: #0082D9;
+    cursor: pointer;
+}
+
+body {
+    min-width: 325px;
+}
+
+header {
+    background: #007ACC;
+    color: #EFEFEF;
+    padding: 7px;
+}
+
+    header a {
+        color: #EFEFEF;
+        text-decoration: none;
+    }
+
+    header h1 {
+        display: inline;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        color: #EFEFEF;
+    }
+
+    header li {
+        display: inline;
+        margin: 5px;
+        padding: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    header ul {
+        display: inline;
+        list-style: none;
+    }
+
+section[data-tab] h1 {
+    color: #007ACC;
+    font-size: 16px;
+    margin: 0;
+}
+
+article h2 {
+    color: #4099D4;
+    font-size: 100%;
+    margin: 0;
+}
+div[data-wzstep] h2 {
+    color: #4099D4;
+    font-size: 2em;
+    margin-bottom: .5em;
+}
+
+section[data-tab] input[type="checkbox"] {
+    vertical-align: middle;
+    margin: 0;
+}
+
+section[data-tab] label {
+    margin: 0;
+    font-weight: normal;
+}
+
+#add-feed-comment {
+    max-width: 600px;
+}
+
+.anchor-pointer {
+    cursor: pointer;
+}
+
+#body {
+    margin: 0px;
+    overflow-x: hidden;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    display: inline;
+    background: #EFEFEF;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+    margin-right: 5px;
+}
+
+.comments-table {
+    border-collapse: collapse;
+    width: 500px;
+}
+
+    .comments-table th, .comments-table td {
+        padding: 4px;
+        border: 1px solid gray;
+    }
+
+.comments-table-content {
+    vertical-align: top;
+    width: 300px;
+}
+
+.comments-table-date {
+    font-size: 10px;
+    font-weight: bold;
+    width: 50px;
+}
+
+.comments-table-message-author {
+    font-size: 11px;
+    width: 75px;
+}
+
+#feed-footer {
+    clear: both;
+}
+
+#feed-items {
+    margin-top: 10px;
+}
+
+.feed-item-comments {
+    background: #F5F5F9;
+    margin-top: 7px;
+    padding: 3px;
+}
+
+.feed-item-date {
+    font-size: 9px;
+    font-weight: bold;
+    color: black;
+}
+
+.feed-item-footer {
+    margin-top: 5px;
+}
+
+    .feed-item-footer li {
+        display: inline;
+        padding-right: 7px;
+    }
+
+.feed-item-single {
+    max-width: 600px;
+    border-bottom: 1px solid #D0D1D7;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    clear: both;
+}
+
+    .feed-item-single h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+        .feed-item-single h1 a {
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #007ACC;
+            text-decoration: none;
+        }
+
+.feed-item-single-left {
+    float: left;
+    width: 75px;
+}
+
+.feed-item-single-right {
+    padding-left: 90px;
+}
+
+.field-validation-error {
+    color: red;
+    font-weight: bold;
+}
+
+#filter-options {
+    background-color: #F5F5F9;
+    border: 1px solid #D0D1D7;
+    padding: 7px;
+    margin-top: 10px;
+}
+
+.helpful-marks {
+    color: #009100;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.log-comments {
+    width: 90%;
+    clear: both;
+}
+
+    .log-comments h1 {
+        font-size: 16px;
+    }
+
+    .log-comments h2 {
+        font-size: 14px;
+    }
+
+.log-comment-content {
+    margin-left: 55px;
+}
+
+    .log-comment-content h2 {
+        color: black;
+    }
+
+.log-comment-profile-picture {
+    float: left;
+}
+
+.log-comment-single {
+    clear: both;
+    padding: 7px;
+}
+
+    .log-comment-single h1 {
+        font-size: 12px;
+    }
+
+    .log-comment-single h2 {
+        font-size: 10px;
+    }
+
+.news-item {
+}
+
+    .news-item div {
+        padding-left: 10px;
+    }
+
+    .news-item h1 {
+        background: #EFEFEF;
+        padding: 4px;
+        color: black;
+        font-size: 18px;
+        display: block;
+    }
+
+    .news-item header {
+        background: none;
+        color: black;
+    }
+
+    .news-item time {
+        font-size: 10px;
+    }
+
+
+.normal-font {
+    font: 13px Helmet, Freesans, sans-serif;
+}
+
+.notice {
+    background-color: #fffda0;
+    border: 1px solid black;
+    padding: 4px;
+}
+
+#recent-comments {
+    clear: both;
+    padding-bottom: 25px;
+}
+
+#recent-comments-by-others {
+    clear: both;
+    padding-bottom: 25px;
+}
+
+.small-text {
+    font-size: small;
+    font-weight: normal;
+}
+
+#subscriptions {
+    padding-top: 15px;
+    padding-bottom: 25px;
+    clear: both;
+}
+
+#subscriptions-table {
+    border-collapse: collapse;
+}
+
+    #subscriptions-table th, #subscriptions-table td {
+        border: 1px solid #B7B7B9;
+        padding: 4px;
+        vertical-align: middle;
+    }
+
+    #subscriptions-table .alt-row {
+        background-color: #F5F5F9;
+    }
+
+.submit-loading {
+    visibility: hidden;
+}
+
+
+table.form-entry th {
+    text-align: left;
+    font-size: medium;
+    font-weight: bold;
+}
+
+.validation-summary-errors {
+    background-color: #fffda0;
+    border: 1px solid black;
+    padding: 4px;
+}
+
+    .validation-summary-errors span {
+        font-size: large;
+        font-weight: bold;
+    }
+
+
+    .validation-summary-errors ul {
+        color: red;
+        font-weight: bold;
+    }
+
+section {
+    margin: 10px;
+}
+
+.context-section {
+    padding-left: 1.2em;
+    display: none;
+}
+
+header > ul > li > a {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+}
+
+    header > ul > li > a.active:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -12px;
+        margin-left: -12px;
+        border-width: 12px;
+        border-style: solid;
+        border-color: transparent transparent #fff transparent;
+    }
+
+input[type="submit"]:disabled {
+    cursor: default;
+}
+
+input[type="file"] {
+    cursor: pointer;
+}
+
+/* wizard */
+.wizard {
+    position: relative;
+    top: 15px;
+}
+
+    .wizard a {
+        padding: 5px 6px 5px;
+        margin-right: 5px;
+        background: #efefef;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+        .wizard a:before {
+            width: 0;
+            height: 0;
+            border-top: 15px inset transparent;
+            border-bottom: 15px inset transparent;
+            border-right: 15px solid #efefef;
+            position: absolute;
+            content: "";
+            top: 0;
+            left: -14px;
+        }
+
+        .wizard a:after {
+            width: 0;
+            height: 0;
+            border-top: 15px inset transparent;
+            border-bottom: 15px inset transparent;
+            border-left: 15px solid #efefef;
+            position: absolute;
+            content: "";
+            top: 0;
+            right: -14px;
+            z-index: 2;
+        }
+
+        .wizard a:first-child:after,
+        .wizard a:last-child:before {
+            border: none;
+        }
+
+        .wizard a:first-child {
+            -webkit-border-radius: 0 4px 4px 0;
+            -moz-border-radius: 0 4px 4px 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .wizard a:last-child {
+            -webkit-border-radius: 4px 0 0 4px;
+            -moz-border-radius: 4px 0 0 4px;
+            border-radius: 4px 0 0 4px;
+        }
+
+img[data-type="icon"] {
+    width: 18px;
+    position: relative;
+    top: 5px;
+}
+
+.highcharts-contextmenu hr {
+    margin: 0;
+}
+
+div[id^="ad-hoc-"].bootstrap-override {
+    width: 0;
+    padding: 0;
+    top: 7px;
+    left: -5px;
+}
+
+/* visualization form items*/
+div[data-wzstep="DataVisualization"] .form-group * {
+    white-space: nowrap;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+div[data-wzstep="DataVisualization"] .form-group input[type="checkbox"] {
+    margin-top: 10px;
+}
+
+div[data-wzstep="DataVisualization"]  a[data-wzstep="Procedure"] {
+    margin-top: -.5em;
+}
+
+div[data-wzstep="DataVisualization"] .form-group a.btn {
+    background-color: #efefef;
+    color: #1a3750;
+    border: none;
+}
+
+    div[data-wzstep="DataVisualization"] .form-group a.btn:hover {
+        background-color: #d7d7d7;
+    }
+
+.ui-timepicker-table td a {
+    font-size: .9em;
+    width: 1.5em;
+    padding: .2em;
+}
+
+.ui-widget-header {
+    color: #333;
+    font-size: .9em;
+}
+
+.ui-timepicker-table th.periods {
+    font-size: .9em;
+}
+
+/* d3 */
+.bullet {
+    font: 10px sans-serif;
+}
+
+    .bullet .measure {
+        stroke: #333;
+        stroke-width: 1px;
+    }
+
+    .bullet .marker {
+        stroke: #000;
+        stroke-width: 2px;
+    }
+
+    .bullet .tick line {
+        stroke: #666;
+        stroke-width: .5px;
+    }
+
+    .bullet .title {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+#chartBody {
+    margin-left: 8.333333333333332%;
+    overflow-y: visible;
+    overflow-x: auto;
+}
+
+#chartBody > a {
+    padding-left: 35px;
+}
+
+#chartBody table {
+    border: none;
+    margin-top: 15px;
+}
+
+#chartBody table td {
+    padding:0 2em 0 .5em;
+    line-height: 30px;
+}
+
+#chartBody table td.headcol {
+    position: absolute;
+    left: 0;
+    width: 8.333333333333332%;
+    text-align: right;
+    margin-top: 1em;
+    font-weight: bold;
+    padding: 0;
+}
+#chartBody table td>span.tick-label{
+    display: block;
+    text-align: right;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+span.tick-label span{display:inline-block}
+span.tick-label .arrow {
+    width:35px;
+}
+
+span.tick-label .line {
+    margin-top:4px;
+    width:30px;
+    background:#333;
+    height:2px;
+    float:left;
+}
+span.tick-label .point {	
+    width: 0; 
+	height: 0; 
+	border-top: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+	border-left: 5px solid #333;
+    float:right;
+}
+
+/* legend */
+div[data-type="chart-area"] table {
+    font-size: .9em;
+}
+
+div[data-type="chart-area"] table thead > tr > th,
+div[data-type="chart-area"] table tbody > tr > td {
+    border: none;
+}
+
+div[data-type="chart-area"] th {
+    text-decoration: underline;
+}
+
+.legend {
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    margin-right: 3px;
+    border: 1px solid #333;
+}
+
+.legend.bar {
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: -.5em;
+    color: #000;
+    border: none;
+}
+
+.idle {
+    background-color: #fff;
+    fill: #fff;
+}
+
+.edit {
+    background-color: #99ccff;
+    fill: #99ccff;
+}
+
+.debug {
+    background-color: #ff5900;
+    fill: #ff5900;
+    color: #fff;
+}
+
+.run {
+    background-color: #007d00;
+    fill: #007d00;
+    color: #fff;
+}
+
+.debug.grayscale {
+    background-color: #666;
+    fill: #666;
+}
+
+.run.grayscale {
+    background-color: #222;
+    fill: #222;
+}
+
+.edit.grayscale {
+    background-color: #999;
+    fill: #999;
+    color:#fff;
+}
+
+section[data-type='doc-utils'] a.disabled:hover {
+    cursor: default;
+    text-decoration: none;
+    border-bottom: none;
+    color: #0082D9;
+}
+
+/* typeahead */
+.typeahead {
+    display: block;
+    width: 98%;
+    overflow: visible;
+}
+
+textarea.typeahead {
+    height: 50px;
+}
+
+input[type="text"].typeahead {
+    width: 295px;
+}
+
+.twitter-typeahead{
+    width: 75%;
+}
+
+.tt-dropdown-menu{
+    width: 100%;
+    padding: 8px 0 2px 5px;
+    background-color: #f8f8ff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+            border-radius: 8px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+/* trends and notifications */
+.activity-feed-dashboard {
+    margin: 5em 1em 1em 2em;
+}
+.trends-container, .notifications-container {
+    border: solid 1px #a9a9a9;
+    padding: 1em 2em 1em 2em;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    display: none;
+}
+
+.trends-container h3, .notifications-container h3 {
+    color: #66757f;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 22px;
+    margin: 0;
+}
+
+.trends-container ul, .notifications-container ul {
+    margin-top: 1em;
+}
+.trends-container li, .notifications-container li {
+    line-height: 1em;
+    padding-bottom: .5em;
+}
+
+/* calendar */
+
+
+ div[data-wzstep="DataVisualization"] h2
+,div[data-wzstep="DataVisualization"] select {
+     display: inline-block;
+     width: auto;
+ }
+ div[data-wzstep="DataVisualization"] h2 {
+     position: relative;
+     top: 5px;
+ }
+ div[data-wzstep="DataVisualization"] div.category {
+     padding-right: 10px;
+     white-space: nowrap;
+     overflow-x: visible;
+ }
+
+#calendar-section path {
+    stroke-width: 1;
+    fill: none;
+}
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+    .d3-tip:after {
+        box-sizing: border-box;
+        display: inline;
+        font-size: 15px;
+        width: 100%;
+        line-height: 1;
+        color: rgba(0, 0, 0, 0.8);
+        content: "\25BC";
+        position: absolute;
+        text-align: center;
+    }
+
+    .d3-tip.n:after {
+        margin: -1px 0 0 0;
+        top: 100%;
+        left: 0;
+    }
+/* hourly */
+#calendar-section .axis path,
+#calendar-section .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#calendar-section .x.axis path {
+    display: none;
+}
+
+.calendar-section {
+    margin-top: 15px;
+}
+
+.calendar-section h4 {
+    text-align: right;
+    margin-right: 15px;
+}
+
+#hourly a {
+    display: inline-block;
+    position: relative;
+    top: 10px;
+}
+

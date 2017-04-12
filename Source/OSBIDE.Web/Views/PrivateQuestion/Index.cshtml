@@ -1,0 +1,22 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@using OSBIDE.Web.Models.ViewModels
+@model PrivateQuestion
+@{
+    ViewBag.Title = "Ask a Question";
+}
+<h1>Ask the Professor a Question:</h1>
+@if (ViewBag.QuestionSubmitted == true)
+{
+    Model.Question = "";
+    <div>Your question has been submitted!</div>
+}
+@using (Html.BeginForm())
+{
+    @Html.TextAreaFor(m => m.Question, new { rows = 8, cols = 80})
+    <br />
+    @Html.HiddenFor(m => m.UserId)
+    <input type="submit" name="submit" value="Submit Question" />
+    <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+}

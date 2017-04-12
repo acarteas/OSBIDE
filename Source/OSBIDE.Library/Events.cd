@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="OSBIDE.Library.Events.AskForHelpEvent" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAAgAgIEQAAIgQEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Events\AskForHelpEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.BreakpointToggleEvent" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAABEAAAAAgAAAEAAAIgAEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Events\BreakpointToggleEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.BuildEvent" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="0.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAABAAAAEAAAAAgAAQkQAAIgAEEACEAAECABAIAU=</HashCode>
+      <FileName>Events\BuildEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.CutCopyPasteEvent" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAgAgAEAAAAAgAAAEQAAIgAEAAAAAAAAABAAgQ=</HashCode>
+      <FileName>Events\CutCopyPasteEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.DebugEvent" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="4.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAAgAIAEQAAIoAEAAAAAIAAABAAgA=</HashCode>
+      <FileName>Events\DebugEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.EditorActivityEvent" BaseTypeListCollapsed="true">
+    <Position X="4" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAEAAAAAgAAAEQAAIgAEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Events\EditorActivityEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.ExceptionEvent" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAEAAAAAgAIEEQEAIgAEEAAAABAAABAIoA=</HashCode>
+      <FileName>Events\ExceptionEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.FeedPostEvent" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="11.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAEAAAAAgAAAEQAAIgQEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Events\FeedPostEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.HelpfulMarkGivenEvent" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAALAAAAAAAEBAAAAgAAAAQAAIgAEAAAAAIAAABAAAA=</HashCode>
+      <FileName>Events\HelpfulMarkGivenEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.LogCommentEvent" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="11.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAiAFAAAAAgAAAAQAAIgQEAAAAQIAEABAAAA=</HashCode>
+      <FileName>Events\LogCommentEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.SaveEvent" BaseTypeListCollapsed="true">
+    <Position X="11" Y="11.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAgAAAAEAAAAAgAAAEQAAIgAEAACAAAAAABAAAA=</HashCode>
+      <FileName>Events\SaveEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Events.SubmitEvent" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAkAAAAAgAAAUQAAIgAEAAAAAoAAEJAAAA=</HashCode>
+      <FileName>Events\SubmitEvent.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.BuildEventBreakPoint">
+    <Position X="10.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAABAAAAAgAAAAAAAAAAAAAAAAAACAAA=</HashCode>
+      <FileName>Models\BuildEventBreakPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.BuildEventErrorListItem">
+    <Position X="10.25" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAABAAAAAgIAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\BuildEventErrorListItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.BreakPoint">
+    <Position X="13" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAIUAwgACAAwAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BreakPoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.ErrorListItem">
+    <Position X="13" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAIAAABACAAAAAAkAAAAAAAAAAABIAA=</HashCode>
+      <FileName>Models\ErrorListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.CodeDocument">
+    <Position X="6.5" Y="7" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAgAAAAABAAAAAAAABAAAAAACAAAACABAAAE=</HashCode>
+      <FileName>Models\CodeDocument.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.CodeDocumentBreakPoint">
+    <Position X="10" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAE=</HashCode>
+      <FileName>Models\CodeDocumentBreakPoint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.CodeDocumentErrorListItem">
+    <Position X="10" Y="9" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAEAIAAAAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Models\CodeDocumentErrorListItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.StackFrame">
+    <Position X="13.5" Y="16.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACAAAAAAAAAAKAAAAAAAAAAAgAAZACABEAAA=</HashCode>
+      <FileName>Models\StackFrame.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.StackFrameVariable">
+    <Position X="16.75" Y="16.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAgAAAAAAAAQAAAAAAAAAAAAgEAAAAAA=</HashCode>
+      <FileName>Models\StackFrameVariable.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.OsbideUser" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="22.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>FAECAUASACAAhMiDMAVEAAAAgBgAAGAAQCKAAABgIEk=</HashCode>
+      <FileName>Models\OsbideUser.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.ProfileImage">
+    <Position X="4" Y="24.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAABgAAAAAAAAAAAIAAAAAgAgBAAAAAAAAIAAAAgAAI=</HashCode>
+      <FileName>Models\ProfileImage.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.School">
+    <Position X="4" Y="28" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\School.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.CourseUserRelationship">
+    <Position X="8.25" Y="22.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIFAAAAAAAAAAAAEIAAAAgAAAAAAAACAAIAAAAAAAA=</HashCode>
+      <FileName>Models\CourseUserRelationship.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OSBIDE.Library.Models.EventLog">
+    <Position X="0.5" Y="32.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>EAICAAAAEAAAAAAAAAAAAAAAAIABABAAAAAEAAQIIAA=</HashCode>
+      <FileName>Models\EventLog.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OSBIDE.Library.Models.EventLogData">
+    <Position X="4.5" Y="32.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAgAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EventLogData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="OSBIDE.Library.Events.IOsbideEvent">
+    <Position X="0.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAEAAAAAgAAAAAAAIgAEAAAAAAAAABAAAA=</HashCode>
+      <FileName>Events\IOsbideEvent.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="OSBIDE.Library.Models.SystemRole">
+    <Position X="6" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAQAAAAAAAAAAAAQAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Models\OsbideUser.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="OSBIDE.Library.Models.Gender">
+    <Position X="4" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAABA=</HashCode>
+      <FileName>Models\OsbideUser.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="OSBIDE.Library.Models.CourseRole">
+    <Position X="11.5" Y="22.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAgAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\CourseRole.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

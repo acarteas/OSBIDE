@@ -1,0 +1,13 @@
+﻿@using OSBIDE.Library.Models
+@using OSBIDE.Library.Events
+@using OSBIDE.Web.Models
+@using System.IO
+@model OSBIDE.Web.Models.AggregateFeedItem
+@{
+    OsbideUser currentUser = ViewBag.CurrentUser;
+}
+@if(Model.Creator.Id == currentUser.Id)
+{
+    //allow students to download their submissions
+    @Html.ActionLink("Download assignment", "DownloadStudentAssignment", "Assignment", new { id = Model.Items.FirstOrDefault().Event.EventLogId }, new { })
+}

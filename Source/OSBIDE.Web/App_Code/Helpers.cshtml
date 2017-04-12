@@ -1,0 +1,51 @@
+﻿@using System.Web.Mvc
+@helper DateAsUnixTime(DateTime dt)
+{
+    @Convert.ToInt64((dt - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds);
+}
+
+@helper RawDate(DateTime dt)
+{
+    @dt.ToString("s")
+}
+
+@helper ProfileImage(int userId, int imageSize = 48, string titleText = "profile image", string altText = "profile image", string additionalStyle = "")
+{
+    var urlHelpler = new UrlHelper(Request.RequestContext);
+    <img src="@urlHelpler.Action("Picture", "Profile", new { id = userId, size = imageSize })" title="@titleText" alt="@altText" style="@additionalStyle" />
+}
+
+@helper RelativeDate(DateTime date)
+{
+    //Outputs "Today" if today, "Yesterday" if yesterday, and normal date otherwise
+   if(date.Date == DateTime.UtcNow.Date)
+   {
+       @:Today
+   }
+   else if(date.Date == DateTime.UtcNow.AddDays(-1).Date)
+   {
+       @:Yesterday
+   }
+   else
+   {
+       @date.ToString("MMMM d, yyyy")
+   }
+}
+
+@helper LatestSubmissionTime(int assignmentId, int currentUserId)
+{
+    using (OSBIDE.Web.Controllers.AssignmentController assignmentController = new OSBIDE.Web.Controllers.AssignmentController())
+    {
+        DateTime lastSubmitted = assignmentController.LatestSubmissionTime(assignmentId, currentUserId);
+        if (lastSubmitted.Year > 1)
+        {   
+            <br />
+            <time class="utc-time"
+                    datetime="@Helpers.DateAsUnixTime(lastSubmitted)"
+                    data-original-date="@Helpers.RawDate(lastSubmitted)"
+                    data-date-format="MM/DD/YYYY hh:mm A">
+                @lastSubmitted.ToString("MM/dd @ hh:mmtt") (UTC)
+            </time>            
+        }
+    }
+}

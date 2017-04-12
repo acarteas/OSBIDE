@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OSBIDE.Setup2012", "OSBIDE.Setup2012\OSBIDE.Setup2012.vdproj", "{B9B7391D-EC6D-424D-AAD7-65AA1E6396EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSBIDE.ConsoleSetup", "OSBIDE.ConsoleSetup\OSBIDE.ConsoleSetup.csproj", "{2C0876B6-91F2-471C-BA7A-4C17FC5A5634}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs25
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = OSBIDE.Setup2012\\OSBIDE.Setup2012.vdproj
+		SccProjectName1 = OSBIDE.Setup2012
+		SccLocalPath1 = OSBIDE.Setup2012
+		SccProjectUniqueName2 = OSBIDE.ConsoleSetup\\OSBIDE.ConsoleSetup.csproj
+		SccProjectName2 = OSBIDE.ConsoleSetup
+		SccLocalPath2 = OSBIDE.ConsoleSetup
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9B7391D-EC6D-424D-AAD7-65AA1E6396EB}.Debug|x86.ActiveCfg = Debug
+		{B9B7391D-EC6D-424D-AAD7-65AA1E6396EB}.Debug|x86.Build.0 = Debug
+		{B9B7391D-EC6D-424D-AAD7-65AA1E6396EB}.Release|x86.ActiveCfg = Release
+		{B9B7391D-EC6D-424D-AAD7-65AA1E6396EB}.Release|x86.Build.0 = Release
+		{2C0876B6-91F2-471C-BA7A-4C17FC5A5634}.Debug|x86.ActiveCfg = Debug|x86
+		{2C0876B6-91F2-471C-BA7A-4C17FC5A5634}.Debug|x86.Build.0 = Debug|x86
+		{2C0876B6-91F2-471C-BA7A-4C17FC5A5634}.Release|x86.ActiveCfg = Release|x86
+		{2C0876B6-91F2-471C-BA7A-4C17FC5A5634}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

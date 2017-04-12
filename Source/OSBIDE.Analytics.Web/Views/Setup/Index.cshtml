@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<div>
+    @ViewBag.message
+</div>
+<h1>Upload NPSM states</h1>
+@using (Html.BeginForm("Index", "Setup", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="files">CSV Files to Upload: </label>
+    <input type="file" name="files" id="files" accept=".csv" multiple="multiple" />
+    <button type="submit">Submit</button>
+}

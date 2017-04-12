@@ -1,0 +1,156 @@
+﻿<ResultMapping>
+  <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetEventLogs_Result">
+    <ScalarProperty Name="Id" ColumnName="Id" />
+    <ScalarProperty Name="LogType" ColumnName="LogType" />
+    <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+    <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+  </ComplexTypeMapping>
+</ResultMapping>
+<ResultMapping>
+  <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetOsbideUsers_Result">
+    <ScalarProperty Name="Id" ColumnName="Id" />
+    <ScalarProperty Name="Email" ColumnName="Email" />
+    <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+    <ScalarProperty Name="LastName" ColumnName="LastName" />
+    <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+    <ScalarProperty Name="InstitutionId" ColumnName="InstitutionId" />
+    <ScalarProperty Name="ReceiveEmailOnNewAskForHelp" ColumnName="ReceiveEmailOnNewAskForHelp" />
+    <ScalarProperty Name="ReceiveEmailOnNewFeedPost" ColumnName="ReceiveEmailOnNewFeedPost" />
+    <ScalarProperty Name="ReceiveNotificationEmails" ColumnName="ReceiveNotificationEmails" />
+    <ScalarProperty Name="DefaultCourseId" ColumnName="DefaultCourseId" />
+    <ScalarProperty Name="LastVsActivity" ColumnName="LastVsActivity" />
+    <ScalarProperty Name="DefaultCourseName" ColumnName="DefaultCourseName" />
+  </ComplexTypeMapping>
+</ResultMapping>
+<ResultMapping>
+  <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetLogComments_Result">
+    <ScalarProperty Name="Id" ColumnName="Id" />
+    <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+    <ScalarProperty Name="SourceEventLogId" ColumnName="SourceEventLogId" />
+    <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+    <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    <ScalarProperty Name="Content" ColumnName="Content" />
+    <ScalarProperty Name="LogType" ColumnName="LogType" />
+    <ScalarProperty Name="SenderId" ColumnName="SenderId" />
+    <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+  </ComplexTypeMapping>
+</ResultMapping>
+<ResultMapping>
+  <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetSubscriptions_Result">
+    <ScalarProperty Name="UserId" ColumnName="UserId" />
+    <ScalarProperty Name="LogId" ColumnName="LogId" />
+  </ComplexTypeMapping>
+</ResultMapping>
+<ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetAskForHelpEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="Code" ColumnName="Code" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+      <ScalarProperty Name="UserComment" ColumnName="UserComment" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetBuildEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetCutCopyPasteEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="Content" ColumnName="Content" />
+      <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+      <ScalarProperty Name="EventAction" ColumnName="EventAction" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetDebugEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="DebugOutput" ColumnName="DebugOutput" />
+      <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+      <ScalarProperty Name="ExecutionAction" ColumnName="ExecutionAction" />
+      <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetEditorActivityEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetExceptionEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+      <ScalarProperty Name="ExceptionAction" ColumnName="ExceptionAction" />
+      <ScalarProperty Name="ExceptionCode" ColumnName="ExceptionCode" />
+      <ScalarProperty Name="ExceptionDescription" ColumnName="ExceptionDescription" />
+      <ScalarProperty Name="ExceptionName" ColumnName="ExceptionName" />
+      <ScalarProperty Name="ExceptionType" ColumnName="ExceptionType" />
+      <ScalarProperty Name="LineContent" ColumnName="LineContent" />
+      <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetFeedPostEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="Comment" ColumnName="Comment" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetHelpfulMarkGivenEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="LogCommentEventId" ColumnName="LogCommentEventId" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetLogCommentEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="Content" ColumnName="Content" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+      <ScalarProperty Name="SourceEventLogId" ColumnName="SourceEventLogId" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetSaveEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+  <ResultMapping>
+    <ComplexTypeMapping TypeName="OSBIDE.HybridModel.GetSubmitEvents_Result">
+      <ScalarProperty Name="Id" ColumnName="Id" />
+      <ScalarProperty Name="EventLogId" ColumnName="EventLogId" />
+      <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+      <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+      <ScalarProperty Name="SolutionData" ColumnName="SolutionData" />
+      <ScalarProperty Name="SolutionName" ColumnName="SolutionName" />
+    </ComplexTypeMapping>
+  </ResultMapping>
+

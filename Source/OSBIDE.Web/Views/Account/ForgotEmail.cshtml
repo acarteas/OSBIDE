@@ -1,0 +1,44 @@
+﻿@model OSBIDE.Web.Models.ViewModels.ForgotEmailViewModel
+@{
+    ViewBag.Title = "Retrieve Email Address";
+    ViewBag.IncludeHeader = false;
+}
+
+<h1>Retrieve Email Address</h1>
+@if (Model.EmailAddress != null)
+{
+    <div class="notice">
+        <p>
+            Your email address is: <strong>@Model.EmailAddress</strong>.
+        @Html.ActionLink("Log into your account.", "Login")
+        </p>
+    </div>
+}
+else
+{
+    <p>
+        This form will allow you to retrieve the email address used to create your OSBIDE account in the event that you have forgotten your email address.  In order to retrieve your email address, please enter the following information:
+    </p>
+    using (Html.BeginForm())
+    {
+    @Html.ValidationSummary(true)
+    <table class="form-entry">
+        <tr>
+            <th>@Html.LabelFor(m => m.SchoolId):</th>
+            <td>@Html.DropDownListFor(m => m.SchoolId, new SelectList(Model.Schools, "Id", "Name"), String.Empty)</td>
+            <td>@Html.ValidationMessageFor(m => m.SchoolId)</td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(m => m.InstitutionId):</th>
+            <td>@Html.TextBoxFor(m => m.InstitutionId)</td>
+            <td>@Html.ValidationMessageFor(m => m.InstitutionId)</td>
+        </tr>
+    </table>
+    <input type="submit" name="submit" value="Get Email Address" />
+    <img class="submit-loading" src="~/Content/icons/loading.gif" title="loading" alt="loading" />
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
